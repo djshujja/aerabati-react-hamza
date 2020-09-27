@@ -1,0 +1,1 @@
+export {default as forgotPassword} from "./forgot-password";

@@ -1,0 +1,1 @@
+export {default as DealerShipHeader} from "./dealership-header";
