@@ -41,31 +41,54 @@ class Leads extends React.Component {
     const data = this.state.data.filter(
       (singleValue) => singleValue._id !== id
     );
-    axios
-      .get(deleteProduct + id)
-      .then((res) => {
-        console.log(res);
-
-        this.setState({
-          data: data,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
+    this.setState({
+      data: data,
+    });
+    if (window.confirm("Are you sure?")) {
+      fetch("https://aerbeti-bck-test.herokuapp.com/api/bookings/" + id, {
+        method: "DELETE",
+        header: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
       });
+    }
   }
+  // deleteBooking(bookingId) {
+  //   const data = this.state.data.filter(
+  //     (singleValue) => singleValue._id !== bookingId
+  //   );
+  //   this.setState({
+  //     data: data,
+  //   });
+  //   // if (window.confirm("Are you sure?")) {
+  //   //   fetch(
+  //   //     "https://aerbeti-bck-test.herokuapp.com/api/bookings/" + bookingId,
+  //   //     {
+  //   //       method: "DELETE",
+  //   //       header: {
+  //   //         Accept: "application/json",
+  //   //         "Content-Type": "application/json",
+  //   //       },
+  //   //     }
+  //   //   );
+  //   // }
+  // }
 
   componentDidMount() {
     axios
       .get(allbookings)
       .then((res) => {
         let allBookings = [];
+        console.log(res);
         this.setState({
           data: res.data,
           allBookings: [...res.data],
         });
       })
-      .catch((err) => {});
+      .catch((err) => {
+        console.log(err);
+      });
   }
   render() {
     return (
@@ -124,16 +147,16 @@ class Leads extends React.Component {
                 {this.state.data.map((singleValue) => (
                   <TableRow key={singleValue._id}>
                     <TableCell style={{ border: "1px solid #ddd" }}>
-                      <Grid container spacing={2}>
-                        <Grid item md={5} lg={4}>
-                          <div className="product-title-container">
-                            <span> {singleValue.firstName}</span>
-                          </div>
-                        </Grid>
-                      </Grid>
+                      {/* <Grid container spacing={2}> */}
+                      {/* <Grid item md={5} lg={4}> */}
+                      <div className="product-desc-container">
+                        <span> {singleValue.firstName}</span>
+                      </div>
+                      {/* </Grid> */}
+                      {/* </Grid> */}
                     </TableCell>
                     <TableCell style={{ border: "1px solid #ddd" }}>
-                      <div className="product-title-container">
+                      <div className="product-desc-container">
                         <span> {singleValue.lastName}</span>
                       </div>
                     </TableCell>
@@ -159,7 +182,7 @@ class Leads extends React.Component {
                     </TableCell>
                     <TableCell style={{ border: "1px solid #ddd" }}>
                       <div className="product-desc-container">
-                        <Typography>{singleValue.status}</Typography>
+                        <Typography>{singleValue.staus}</Typography>
                       </div>
                     </TableCell>
                     <TableCell style={{ border: "1px solid #ddd" }}>
@@ -171,7 +194,7 @@ class Leads extends React.Component {
                     </TableCell>
                     <TableCell style={{ border: "1px solid #ddd" }}>
                       <div className="product-desc-container">
-                        <Typography>{singleValue.car}</Typography>
+                        <Typography>{singleValue.car.name}</Typography>
                       </div>
                     </TableCell>
                     <TableCell style={{ border: "1px solid #ddd" }}>
@@ -187,7 +210,7 @@ class Leads extends React.Component {
                       </Grid>
                       <IconButton
                         onClick={() => {
-                          this.deleteProduct(singleValue._id);
+                          this.deleteProduct(singleValue.booking_id);
                         }}
                       >
                         <FaTrash />

@@ -156,7 +156,7 @@ class form extends React.Component {
                 <p>
                   <label>Taken Time</label>
                   <input
-                    type="text"
+                    type="date"
                     name="takenTime"
                     value={takenTime}
                     onChange={this.handleChange}
@@ -165,17 +165,28 @@ class form extends React.Component {
                 <p>
                   <label>Return Time</label>
                   <input
-                    type="text"
+                    type="date"
                     name="returnTime"
                     value={returnTime}
                     onChange={this.handleChange}
                   />
                 </p>
                 <p>
+                  {/* <label>Car</label>
+                  <select id="car" onChange={this.handleChange}>
+                    {this.state.data.map((data) => (
+                      <option  key={data._id} value={data._id}>
+                        {data.name}
+                      </option>
+                    ))}
+                  </select> */}
+
                   <label>Car</label>
                   <select id="car" name="car" onChange={this.handleChange}>
                     {this.state.data.map((data) => (
-                      <option key={data._id}>{data.name}</option>
+                      <option key={data._id} value={data._id}>
+                        {data.name}
+                      </option>
                     ))}
                   </select>
                 </p>
