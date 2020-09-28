@@ -15,6 +15,9 @@ body,
 .gutter {
     padding: 30px 15px;
 }
+.MuiTableCell-root{
+    padding:14px!important;
+}
 
 /* header style */
 .header {

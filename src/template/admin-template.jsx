@@ -70,7 +70,7 @@ class AdminTemplate extends React.Component {
                                                                 <FaCaretRight/>
                                                             </div>
                                                         </Link>
-                                                        <Link to={"/dealership-cars-info"} className={"link"}>
+                                                        <Link to={"/stats"} className={"link"}>
                                                             <div className="admin-sidebar-item">
                                                                 <Typography
                                                                     className="admin-sidebar-text">Stats</Typography>

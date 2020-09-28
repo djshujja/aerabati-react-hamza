@@ -3,6 +3,7 @@ import { Typography, Grid, FormControl, InputLabel, Select, MenuItem, IconButton
 import { FaTrash, FaPause, FaPencilAlt, FaMinus, FaThumbsUp  } from 'react-icons/fa';
 import { PrimaryTemplate } from '../../template';
 import { AdminTemplate } from '../../template';
+import {  Button } from '@material-ui/core';
 
 import  axios  from 'axios';
 import {allshowrooms,deleteProduct } from '../../assets/serverUrls';
@@ -55,6 +56,11 @@ class ShowRoom extends React.Component {
                             <Typography style={{ color: '#cc0000', fontWeight: 700 }}>
                                 25 Active Cars
                             </Typography>
+                            <Link to="/addshowroom" className={"link"}>
+                            <Button  type={"submit"} className={"MuiButton-text primary-btn-red"}  variant={"contained"} color={"primary"}>
+                             Add Product
+                          </Button>
+                          </Link> 
                         </Grid>
                         <Grid item sm={6} className="search-filter-select-container">
                             <FormControl variant="outlined" className="search-filter-form" style={{ marginRight: 8 }}>

@@ -125,10 +125,10 @@ class Leads extends React.Component {
           </Grid>
 
           <TableContainer>
-            <Table style={{ width: "100%" }}>
+            <Table style={{ width: "80%" }}>
               <TableHead style={{ backgroundColor: "#09080e", color: "#fff" }}>
                 <TableRow>
-                  <TableCell style={{ color: "#fff" }}>First Name</TableCell>
+                  <TableCell style={{ color: "#fff" ,width:"80px"}}>First Name</TableCell>
                   <TableCell style={{ color: "#fff" }}>Last Name</TableCell>
                   <TableCell style={{ color: "#fff" }}>Phone No</TableCell>
                   <TableCell style={{ color: "#fff" }}>Taken Time</TableCell>

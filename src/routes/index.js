@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { HomePage } from '../pages/home-page';
-import { ShowRoom } from '../pages/showroom';
+import { ShowRoom ,Addshowroom} from '../pages/showroom';
 import { Leads } from '../pages/leads';
 import { Users } from '../pages/users';
 import { ActiveCars } from '../pages/active-cars';
@@ -20,7 +20,7 @@ import {forgotPassword} from "../pages/forgot-password";
 import AuthenticatedComponent from "./privateRoute"
 import Form from "../pages/form/form"
 import {UserEdit} from "../pages/user-edit";
-import {DealerShip,DealerShipInfo,DealerShipStats} from "../pages/dealership/";
+import {DealerShip,DealerShipInfo,DealerShipStats,Stats} from "../pages/dealership/";
 
 
 class Routes extends React.Component{
@@ -58,6 +58,7 @@ class Routes extends React.Component{
                     <Route path="/add-products" extact component={AuthenticatedComponent(AddProducts)}/>
                     <Route path="/edit-products/:id" extact component={AuthenticatedComponent(EditProducts)}/>
                     <Route path="/showroom" extact component={AuthenticatedComponent(ShowRoom)}/> {/* like users */}
+                    <Route path="/addshowroom" extact component={AuthenticatedComponent(Addshowroom)}/> {/* like users */}
                     <Route path="/leads" extact component={AuthenticatedComponent(Leads)}/> {/* like users */}
 
                     <Route path="/users" extact component={AuthenticatedComponent(Users)}/>
@@ -65,10 +66,10 @@ class Routes extends React.Component{
                     {/*<Route path="/user-settings/:id"  component={AuthenticatedComponent(UserEdit)}/>*/}
 
                     <Route  path="/dealership-info/:id"  component={AuthenticatedComponent(DealerShipInfo)}/>
-                    <Route exact path="/dealership"  component={AuthenticatedComponent(DealerShip)}/>
+                     <Route exact path="/dealership"  component={AuthenticatedComponent(DealerShip)}/> 
                     <Route exact path="/activecars"  component={AuthenticatedComponent(ActiveCars)}/>
                     <Route exact path="/form"  component={AuthenticatedComponent(Form)}/>
-                    <Route exact path="/stats"  component={AuthenticatedComponent(DealerShipStats)}/>
+                    <Route exact path="/stats"  component={AuthenticatedComponent(Stats)}/>
                    
 
 
