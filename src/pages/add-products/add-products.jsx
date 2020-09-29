@@ -17,9 +17,13 @@ const initialState = {
     location:"",
     descriptions:"",
 
-    rental_period:"",
-    rental_cost:"",
-    mileage_limit:"",
+    
+    daily_cost:"",
+    monthly_cost:"",
+    weekly_cost:"",
+    daily_mileage_limit:"",
+    monthly_mileage_limit:"",
+    weekly_mileage_limit:"",
     color_available:"",
     additional_mileage:"",
     toll_charge:"",
@@ -49,10 +53,15 @@ class AddProducts extends React.Component {
 
 
 
-           rental_period:"Daily Rent",
-           rental_cost:"AED 100",
-           mileage_limit:"100km",
-           color_available:"red",
+           
+         
+            daily_cost:"100 AED",
+            monthly_cost:"2000 AED",
+            weekly_cost:"450 AED",
+            daily_mileage_limit:"100 KM",
+            monthly_mileage_limit:"1000 KM",
+            weekly_mileage_limit:"500 KM",
+            color_available:"red",
            additional_mileage:"no",
            toll_charge:"no",
            excess_claim:"no",
@@ -184,9 +193,13 @@ class AddProducts extends React.Component {
         formData.append('model',this.state.model);
         formData.append('location',this.state.location);
         formData.append('descriptions',this.state.descriptions);
-        formData.append('rental_period',this.state.rental_period);
-        formData.append('rental_cost',this.state.rental_cost);
-        formData.append('mileage_limit',this.state.mileage_limit);
+        
+        formData.append('daily_cost',this.state.daily_cost);
+        formData.append('monthly_cost',this.state.monthly_cost);
+        formData.append('weekly_cost',this.state.weekly_cost);
+        formData.append('daily_mileage_limit',this.state.daily_mileage_limit);
+        formData.append('weekly_mileage_limit',this.state.weekly_mileage_limit);
+        formData.append('monthly_mileage_limit',this.state.monthly_mileage_limit);
         formData.append('color_available',this.state.color_available);
         formData.append('additional_mileage',this.state.additional_mileage);
         formData.append('toll_charge',this.state.toll_charge);
@@ -335,15 +348,23 @@ class AddProducts extends React.Component {
 
                         <Typography variant={"h5"}>Rent information </Typography>
 
-                        <TextField  name={"rental_period"} fullWidth onChange={this.handleChange}  value={this.state.rental_period} label={"Rental period"} placeholder={"e.g Daily Rent"} />
-                        <br/><br/>
+                        {/* <TextField  name={"rental_period"} fullWidth onChange={this.handleChange}  value={this.state.rental_period} label={"Rental period"} placeholder={"e.g Daily Rent"} />
+                        <br/><br/> */}
 
 
-                      <TextField name={"rental_cost"} fullWidth onChange={this.handleChange}  value={this.state.rental_cost} label={"Rental Cost"} placeholder={"e.g Daily Rent Cost"} />
+                      <TextField name={"daily_cost"} fullWidth onChange={this.handleChange}  value={this.state.daily_cost} label={"Daily Cost"} placeholder={"e.g Daily Rent Cost"} />
+                      <br/><br/>
+                      <TextField name={"daily_mileage_limit"} fullWidth onChange={this.handleChange}  value={this.state.daily_mileage_limit} label={"Daily Milage limit"} placeholder={"e.g Daily Milage limit"} />
+                      <br/><br/>
+                      <TextField name={"weekly_cost"} fullWidth onChange={this.handleChange}  value={this.state.weekly_cost} label={"Weekly Cost"} placeholder={"e.g Weekly Cost"} />
+                      <br/><br/>
+                      <TextField name={"weekly_mileage_limit"} fullWidth onChange={this.handleChange}  value={this.state.weekly_mileage_limit} label={"Weekly Milage limit"} placeholder={"e.g Weekly Milage limit"} />
+                      <br/><br/>
+                      <TextField name={"monthly_cost"} fullWidth onChange={this.handleChange}  value={this.state.monthly_cost} label={"Monthly Cost"} placeholder={"e.g Monthly Cost"} />
                       <br/><br/>
 
 
-                      <TextField name={"mileage_limit"} fullWidth onChange={this.handleChange}  value={this.state.mileage_limit} label={"Mileage limit"} placeholder={"e.g 100km"} />
+                      <TextField name={"monthly_mileage_limit"} fullWidth onChange={this.handleChange}  value={this.state.monthly_mileage_limit} label={" Monthly Mileage limit"} placeholder={"e.g 100km"} />
                       <br/><br/>
 
                       <Typography variant={"h5"}>Additional info</Typography>

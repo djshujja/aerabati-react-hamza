@@ -34,9 +34,8 @@ class DealershipStats extends React.Component {
         const {dealerStats} = this.state;
         return (
 
-            <PrimaryTemplate>
-                 <AdminTemplate>
-                     <DealerShipHeader/>
+        
+                     <div>
                     <section className="stat-container" >
                         <Typography variant="h6" className="stat-heading">
                             Dealership statistics
@@ -89,8 +88,8 @@ class DealershipStats extends React.Component {
 
                         </Grid>
                     </section>
-                </AdminTemplate>
-             </PrimaryTemplate>
+                    </div>
+              
         )
     }
 }
