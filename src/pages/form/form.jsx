@@ -2,6 +2,7 @@ import React from "react";
 import "./form.css";
 import axios from "axios";
 import { PrimaryTemplate } from '../../template';
+import AdminTemplate from "../../template/admin-template";
 import {
   bookings,
   getAllProductsDetailsUrl,
@@ -105,6 +106,7 @@ class form extends React.Component {
     } = this.state;
     return (
       <PrimaryTemplate>
+        
       <div className="formwrapper">
         <div className="containers">
           <div style={{ justifyContent: "center" }}>
@@ -209,7 +211,9 @@ class form extends React.Component {
           </div>
         </div>
       </div>
+     
       </PrimaryTemplate>
+
     );
   }
 }

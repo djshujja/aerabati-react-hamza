@@ -69,7 +69,8 @@ class Routes extends React.Component{
                      <Route exact path="/dealership"  component={AuthenticatedComponent(DealerShip)}/> 
                     <Route exact path="/activecars"  component={AuthenticatedComponent(ActiveCars)}/>
                     <Route exact path="/form"  component={AuthenticatedComponent(Form)}/>
-                    <Route exact path="/stats"  component={AuthenticatedComponent(Stats)}/>
+                    {/* <Route exact path="/stats"  component={AuthenticatedComponent(Stats)}/> */}
+                    <Route exact path="/stats"  component={(DealerShipStats)}/>
                    
 
 

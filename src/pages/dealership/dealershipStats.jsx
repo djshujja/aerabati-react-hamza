@@ -2,6 +2,9 @@ import React from 'react';
 import { Typography, Grid } from '@material-ui/core';
 import { FaPodcast, FaCalculator } from 'react-icons/fa';
 import { MdFindInPage, MdMouse } from 'react-icons/md';
+import AdminTemplate from "../../template/admin-template";
+import {PrimaryTemplate} from "../../template";
+import {DealerShipHeader} from "../../components/dealership-header";
 
 import { AdminStatBadge } from '../../components/badges';
 
@@ -31,9 +34,9 @@ class DealershipStats extends React.Component {
         const {dealerStats} = this.state;
         return (
 
-            // <PrimryTemplate>
-            //     <AdminTemplate>
-            //         <DealerShipHeader/>
+            <PrimaryTemplate>
+                 <AdminTemplate>
+                     <DealerShipHeader/>
                     <section className="stat-container" >
                         <Typography variant="h6" className="stat-heading">
                             Dealership statistics
@@ -86,8 +89,8 @@ class DealershipStats extends React.Component {
 
                         </Grid>
                     </section>
-            //     </AdminTemplate>
-            // </PrimryTemplate>
+                </AdminTemplate>
+             </PrimaryTemplate>
         )
     }
 }
