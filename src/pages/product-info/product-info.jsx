@@ -47,7 +47,7 @@ class ProductInfo extends React.Component {
                         </span> 
                         <span className="product-rent-seperator" >|</span>
                         <span variant="h3" className="product-rent">
-                            {carsInfo.rental_period} / {carsInfo.rental_cost}
+                            {carsInfo.car_type} / {carsInfo.daily_cost} / Day
                         </span>
                     </div>
 
@@ -137,14 +137,42 @@ class ProductInfo extends React.Component {
 
                                                     <TableRow>
                                                         <TableCell style={{border: '1px solid #ddd' }}>
-                                                            {carsInfo ? carsInfo.rental_period : ""}
+                                                            Daily Rental
+                                                            {/* {carsInfo ? carsInfo.daily_cost : ""} */}
                                                         </TableCell>
                                                         <TableCell style={{border: '1px solid #ddd' }}>
-                                                            {carsInfo ? carsInfo.rental_cost : ""}
+                                                            {carsInfo ? carsInfo.daily_cost : ""}
                                                         </TableCell>
                                                         <TableCell style={{border: '1px solid #ddd' }}>
-                                                            {carsInfo ? carsInfo.mileage_limit : ""}
+                                                            {carsInfo ? carsInfo.daily_mileage_limit : ""}
                                                         </TableCell>
+
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell style={{border: '1px solid #ddd' }}>
+                                                            Weekly Rental
+                                                            {/* {carsInfo ? carsInfo.daily_cost : ""} */}
+                                                        </TableCell>
+                                                        <TableCell style={{border: '1px solid #ddd' }}>
+                                                            {carsInfo ? carsInfo.weekly_cost : ""}
+                                                        </TableCell>
+                                                        <TableCell style={{border: '1px solid #ddd' }}>
+                                                            {carsInfo ? carsInfo.weekly_mileage_limit : ""}
+                                                        </TableCell>
+
+                                                    </TableRow>
+                                                    <TableRow>
+                                                        <TableCell style={{border: '1px solid #ddd' }}>
+                                                            Monthly Rental
+                                                            {/* {carsInfo ? carsInfo.daily_cost : ""} */}
+                                                        </TableCell>
+                                                        <TableCell style={{border: '1px solid #ddd' }}>
+                                                            {carsInfo ? carsInfo.monthly_cost : ""}
+                                                        </TableCell>
+                                                        <TableCell style={{border: '1px solid #ddd' }}>
+                                                            {carsInfo ? carsInfo.monthly_mileage_limit : ""}
+                                                        </TableCell>
+
                                                     </TableRow>
                                                 </TableBody>
                                             </Table>

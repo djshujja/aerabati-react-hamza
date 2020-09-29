@@ -341,7 +341,7 @@ class AddProducts extends React.Component {
 
                   <br/><br/>
 
-                  <TextField label={"What type of car"} fullWidth placeholder={"e.g luxury"} onChange={this.handleChange} name={"car_type"} value={this.state.car_type}/>
+                  <TextField label={"What type of car"} fullWidth placeholder={"e.g Luxury/Sedan/SUV"} onChange={this.handleChange} name={"car_type"} value={this.state.car_type}/>
 
 
                         <br/><br/>

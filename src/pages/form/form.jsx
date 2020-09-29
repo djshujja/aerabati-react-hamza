@@ -10,6 +10,7 @@ import {
   allCars,
 } from "../../assets/serverUrls";
 
+const justDate = new Date(Date.now());
 const initialState = {
   data: [],
   firstName: "",
@@ -20,6 +21,7 @@ const initialState = {
   returnTime: "",
   car: "",
   specialInstructions: "",
+  createdAt: "",
 };
 class form extends React.Component {
   constructor(props) {
@@ -37,6 +39,8 @@ class form extends React.Component {
       returnTime: "",
       car: "",
       specialInstructions: "",
+      createdAt: justDate.toString()
+
     };
   }
 

@@ -128,18 +128,20 @@ class Leads extends React.Component {
             <Table style={{ width: "80%" }}>
               <TableHead style={{ backgroundColor: "#09080e", color: "#fff" }}>
                 <TableRow>
-                  <TableCell style={{ color: "#fff" ,width:"80px"}}>First Name</TableCell>
-                  <TableCell style={{ color: "#fff" }}>Last Name</TableCell>
+                  <TableCell style={{ color: "#fff" ,width:"80px"}}>Full Name</TableCell>
+                  {/* <TableCell style={{ color: "#fff" }}>Last Name</TableCell> */}
                   <TableCell style={{ color: "#fff" }}>Phone No</TableCell>
                   <TableCell style={{ color: "#fff" }}>Taken Time</TableCell>
                   <TableCell style={{ color: "#fff" }}>Return Time</TableCell>
                   <TableCell style={{ color: "#fff" }}>Booking Id</TableCell>
                   <TableCell style={{ color: "#fff" }}>Status</TableCell>
                   <TableCell style={{ color: "#fff" }}>
-                    Special Instructions
+                    Lead Type                  
                   </TableCell>
                   <TableCell style={{ color: "#fff" }}>Car</TableCell>
-                  <TableCell style={{ color: "#fff" }}>Actions</TableCell>
+                  <TableCell style={{ color: "#fff" }}>Date</TableCell>
+
+                  {/* <TableCell style={{ color: "#fff" }}>Actions</TableCell> */}
                 </TableRow>
               </TableHead>
 
@@ -150,16 +152,16 @@ class Leads extends React.Component {
                       {/* <Grid container spacing={2}> */}
                       {/* <Grid item md={5} lg={4}> */}
                       <div className="product-desc-container">
-                        <span> {singleValue.firstName}</span>
+                        <span> {singleValue.firstName} {singleValue.lastName}</span>
                       </div>
                       {/* </Grid> */}
                       {/* </Grid> */}
                     </TableCell>
-                    <TableCell style={{ border: "1px solid #ddd" }}>
+                    {/* <TableCell style={{ border: "1px solid #ddd" }}>
                       <div className="product-desc-container">
                         <span> {singleValue.lastName}</span>
                       </div>
-                    </TableCell>
+                    </TableCell> */}
                     <TableCell style={{ border: "1px solid #ddd" }}>
                       <div className="product-desc-container">
                         <Typography>{singleValue.phoneNo}</Typography>
@@ -182,13 +184,14 @@ class Leads extends React.Component {
                     </TableCell>
                     <TableCell style={{ border: "1px solid #ddd" }}>
                       <div className="product-desc-container">
-                        <Typography>{singleValue.staus}</Typography>
+                        <Typography>{singleValue.status}</Typography>
                       </div>
                     </TableCell>
                     <TableCell style={{ border: "1px solid #ddd" }}>
                       <div className="product-desc-container">
                         <Typography>
-                          {singleValue.specialInstructions}
+                          {/* {singleValue.specialInstructions} */}
+                          Message
                         </Typography>
                       </div>
                     </TableCell>
@@ -198,6 +201,11 @@ class Leads extends React.Component {
                       </div>
                     </TableCell>
                     <TableCell style={{ border: "1px solid #ddd" }}>
+                      <div className="product-desc-container">
+                        <Typography>{singleValue.createdAt.substring(0, 10)}</Typography>
+                      </div>
+                    </TableCell>
+                    {/* <TableCell style={{ border: "1px solid #ddd" }}>
                       <Grid item md={7} lg={8}>
                         <div className="product-action-btns-container">
                           <Link to={`/edit-products/` + singleValue._id}>
@@ -215,7 +223,7 @@ class Leads extends React.Component {
                       >
                         <FaTrash />
                       </IconButton>
-                    </TableCell>
+                    </TableCell> */}
                   </TableRow>
                 ))}
               </TableBody>
