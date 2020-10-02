@@ -25,10 +25,16 @@ const initialState = {
     location:"",
     descriptions:"",
     image:[],
-    rental_period:"",
-    rental_cost:"",
-    mileage_limit:"",
+    daily_cost:"",
+    monthly_cost:"",
+    weekly_cost:"",
+    daily_mileage_limit:"",
+    monthly_mileage_limit:"",
+    weekly_mileage_limit:"",
     color_available:"",
+    doors:"",
+    transmission:"",
+    engine:"",
     additional_mileage:"",
     toll_charge:"",
     excess_claim:"",
@@ -39,6 +45,7 @@ const initialState = {
     specs_description:"",
     //car features
     features_description:"",
+    terms:"",
 
 
 
@@ -96,9 +103,12 @@ class EditProducts extends React.Component {
 
 
 
-               rental_period:data.rental_period,
-               rental_cost:data.rental_cost,
-               mileage_limit:data.mileage_limit,
+               daily_cost:"100 AED",
+            monthly_cost:"2000 AED",
+            weekly_cost:"450 AED",
+            daily_mileage_limit:"100 KM",
+            monthly_mileage_limit:"1000 KM",
+            weekly_mileage_limit:"500 KM",
                color_available:data.color_available,
                additional_mileage:data.additional_mileage,
                toll_charge:data.toll_charge,
@@ -116,6 +126,10 @@ class EditProducts extends React.Component {
                car_type:data.car_type,
                car_rental_company_name:data.car_rental_company_name,
                car_image:data.imagePath,
+               doors:"",
+               transmission:"",
+               engine:"",
+               terms:"",
                multiple_image_path:data.multiple_image_path
 
            })
@@ -163,10 +177,17 @@ class EditProducts extends React.Component {
         formData.append('location',this.state.location);
         formData.append('descriptions',this.state.descriptions);
 
-        formData.append('rental_period',this.state.rental_period);
-        formData.append('rental_cost',this.state.rental_cost);
-        formData.append('mileage_limit',this.state.mileage_limit);
+        formData.append('daily_cost',this.state.daily_cost);
+        formData.append('monthly_cost',this.state.monthly_cost);
+        formData.append('weekly_cost',this.state.weekly_cost);
+        formData.append('daily_mileage_limit',this.state.daily_mileage_limit);
+        formData.append('weekly_mileage_limit',this.state.weekly_mileage_limit);
+        formData.append('monthly_mileage_limit',this.state.monthly_mileage_limit);
         formData.append('color_available',this.state.color_available);
+        formData.append('doors',this.state.doors);
+        formData.append('transmission',this.state.transmission);
+        formData.append('engine',this.state.engine);
+        formData.append('car_rental_company_name',this.state.terms);
         formData.append('additional_mileage',this.state.additional_mileage);
         formData.append('toll_charge',this.state.toll_charge);
         formData.append('excess_claim',this.state.excess_claim);
@@ -268,57 +289,37 @@ class EditProducts extends React.Component {
 
                             <Typography variant={"h5"}>Rent information </Typography>
 
-                            <TextField  name={"rental_period"} fullWidth onChange={this.handleChange}  value={this.state.rental_period} label={"Rental period"} placeholder={"e.g Daily Rent"} />
-                            <br/><br/>
-
-
-                            <TextField name={"rental_cost"} fullWidth onChange={this.handleChange}  value={this.state.rental_cost} label={"Rental Cost"} placeholder={"e.g Daily Rent Cost"} />
-                            <br/><br/>
-
-
-                            <TextField name={"mileage_limit"} fullWidth onChange={this.handleChange}  value={this.state.mileage_limit} label={"Mileage limit"} placeholder={"e.g 100km"} />
-                            <br/><br/>
-
+                            <TextField name={"daily_cost"} fullWidth onChange={this.handleChange}  value={this.state.daily_cost} label={"Daily Cost"} placeholder={"e.g Daily Rent Cost"} />
+                      <br/><br/>
+                      <TextField name={"daily_mileage_limit"} fullWidth onChange={this.handleChange}  value={this.state.daily_mileage_limit} label={"Daily Milage limit"} placeholder={"e.g Daily Milage limit"} />
+                      <br/><br/>
+                      <TextField name={"weekly_cost"} fullWidth onChange={this.handleChange}  value={this.state.weekly_cost} label={"Weekly Cost"} placeholder={"e.g Weekly Cost"} />
+                      <br/><br/>
+                      <TextField name={"weekly_mileage_limit"} fullWidth onChange={this.handleChange}  value={this.state.weekly_mileage_limit} label={"Weekly Milage limit"} placeholder={"e.g Weekly Milage limit"} />
+                      <br/><br/>
+                      <TextField name={"monthly_cost"} fullWidth onChange={this.handleChange}  value={this.state.monthly_cost} label={"Monthly Cost"} placeholder={"e.g Monthly Cost"} />
+                      <br/><br/>
+                      <TextField name={"monthly_mileage_limit"} fullWidth onChange={this.handleChange}  value={this.state.monthly_mileage_limit} label={" Monthly Mileage limit"} placeholder={"e.g 100km"} />
+                      <br/><br/>
                             <Typography variant={"h5"}>Additional info</Typography>
 
                             <TextField name={"color_available"} fullWidth onChange={this.handleChange}  value={this.state.color_available} label={"Available Color"} placeholder={"Write color name separated with comma"} />
-                            <br/><br/>
+                      <br/><br/>
 
-                            <TextField name={"additional_mileage"} fullWidth onChange={this.handleChange}  value={this.state.additional_mileage} label={"Additional mileage info"} placeholder={"e.g AED 100/hr"} />
-                            <br/><br/>
+                      <TextField name={"doors"} fullWidth onChange={this.handleChange}  value={this.state.doors} label={"Doors"} placeholder={"e.g 2 doors "} />
+                      <br/><br/>
 
-                            <TextField name={"toll_charge"} fullWidth onChange={this.handleChange}  value={this.state.toll_charge} label={"Toll charge"} placeholder={"Toll charge"} />
-                            <br/><br/>
-
-                            <TextField name={"excess_claim"} fullWidth onChange={this.handleChange}  value={this.state.excess_claim} label={"Excess claim"} placeholder={""} />
-                            <br/><br/>
-                            <TextField name={"security_deposit"} fullWidth onChange={this.handleChange}  value={this.state.security_deposit} label={"Rental period"} placeholder={"Daily Rent"} />
-                            <br/><br/>
-
-
-
-                            <TextField name={"accepted_in"} fullWidth onChange={this.handleChange}  value={this.state.accepted_in} label={"Accepted In"} placeholder={"Payment accepted by atm or other way"} />
-                            <br/><br/>
-
-                            <TextField name={"pickup_charge"} fullWidth onChange={this.handleChange}  value={this.state.pickup_charge} label={"Pickup charges"} placeholder={"Pickup charges"} />
-                            <br/><br/>
-
-                            <Typography  variant={"h5"}>Car Specification<small style={{fontSize:".7rem"}}>(Enter Car specifications separated with comma like 4 door, fit for 5 passengers and more)</small></Typography>
-                            <br/>
-                            <TextareaAutosize style={{width:"70%"}} fullWidth name="specs_description" value={this.state.specs_description} onChange={this.handleChange} id="car-descriptions"  aria-label="minimum height" rowsMin={3} placeholder="Car specification" />
-                            <br/><br/>
-                            <Typography  variant={"h5"}>Car Features<small style={{fontSize:".7rem"}}>(Car features separated with comma like cruise control, FM radio and more)</small></Typography>
-                            <br/>
-                            <TextareaAutosize style={{width:"70%"}} fullWidth name="features_description" value={this.state.features_description} onChange={this.handleChange} id="car-descriptions"  aria-label="minimum height" rowsMin={3} placeholder="Car features" />
-                            <br/><br/>
-                            <Typography variant={"h5"}>Overall Car Description</Typography>
-                            <br/>
-                            <TextareaAutosize value={this.state.descriptions} style={{width:"70%"}} fullWidth name="descriptions" onChange={this.handleChange} id="car-descriptions"  aria-label="minimum height" rowsMin={3} placeholder="Enter your car descriptions here" />
+                      <TextField name={"transmission"} fullWidth onChange={this.handleChange}  value={this.state.transmission} label={"Transmission"} placeholder={"Toll charge"} />
+                      <br/><br/>
+                      
+                     <TextField name={"engine"} fullWidth onChange={this.handleChange}  value={this.state.engine} label={"Engine"} placeholder={""} />
+                  <br/><br/>
+                  <Typography variant={"h5"}>Terms and Condition</Typography>
+                      <br/>
+                      <TextareaAutosize style={{width:"70%"}} fullWidth name={"terms"}  value={this.state.terms}  onChange={this.handleChange} id="car-descriptions"  aria-label="minimum height" rowsMin={3} placeholder="Enter Terms And Conditions Here" />
 
 
-                            <br/><br/>
-
-
+                      <br/><br/>
                             <Typography variant={"h5"}>Upload multiple car images</Typography>
                             <br/>
 

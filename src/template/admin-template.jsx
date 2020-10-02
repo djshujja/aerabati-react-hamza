@@ -52,7 +52,7 @@ class AdminTemplate extends React.Component {
                                                         <Link to={"/add-products"} className={"link"}>
                                                             <div  className="admin-sidebar-item">
                                                                 <Typography
-                                                                    className="admin-sidebar-text">Add Products </Typography>
+                                                                    className="admin-sidebar-text">Add Car</Typography>
                                                                 <FaCaretRight/>
                                                             </div>
                                                         </Link>

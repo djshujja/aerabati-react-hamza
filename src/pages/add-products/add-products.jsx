@@ -15,9 +15,6 @@ const initialState = {
     name:"",
     model:"",
     location:"",
-    descriptions:"",
-
-    
     daily_cost:"",
     monthly_cost:"",
     weekly_cost:"",
@@ -25,21 +22,25 @@ const initialState = {
     monthly_mileage_limit:"",
     weekly_mileage_limit:"",
     color_available:"",
-    additional_mileage:"",
-    toll_charge:"",
-    excess_claim:"",
-    security_deposit:"",
-    accepted_in:"",
-    pickup_charge:"",
-//    car specification
-    specs_description:"",
-    //car features
-    features_description:"",
-
-
-
+    doors:"",
+    transmission:"",
+    engine:"",
+    terms:"",
     car_type:"",
+    car_rental_company_id:"",
+    // descriptions:"",
 
+    
+   
+
+    // security_deposit:"",
+    // accepted_in:"",
+    // pickup_charge:"",
+//    car specification
+    // specs_description:"",
+    //car features
+    // features_description:"",
+    
 
 
 
@@ -61,18 +62,19 @@ class AddProducts extends React.Component {
             daily_mileage_limit:"100 KM",
             monthly_mileage_limit:"1000 KM",
             weekly_mileage_limit:"500 KM",
-            color_available:"red",
-           additional_mileage:"no",
-           toll_charge:"no",
-           excess_claim:"no",
-           security_deposit:"no",
-           accepted_in:"atm",
-           pickup_charge:"no",
+            color_available:"Red",
+           doors:"4 Doors",
+           transmission:"Manual",
+           engine:"",
+        //    security_deposit:"no",
+        //    accepted_in:"atm",
+        //    pickup_charge:"no",
 
-          specs_description:"no at this time",
+        //   specs_description:"no at this time",
 
-           features_description:"no",
+        //    features_description:"no",
            car_type:"luxury",
+           terms:"",
 
 
 
@@ -201,23 +203,24 @@ class AddProducts extends React.Component {
         formData.append('weekly_mileage_limit',this.state.weekly_mileage_limit);
         formData.append('monthly_mileage_limit',this.state.monthly_mileage_limit);
         formData.append('color_available',this.state.color_available);
-        formData.append('additional_mileage',this.state.additional_mileage);
-        formData.append('toll_charge',this.state.toll_charge);
-        formData.append('excess_claim',this.state.excess_claim);
+        formData.append('doors',this.state.doors);
+        formData.append('transmission',this.state.transmission);
+        formData.append('engine',this.state.engine);
         formData.append('car_type',this.state.car_type);
 
-        formData.append('security_deposit',this.state.security_deposit);
+        // formData.append('security_deposit',this.state.security_deposit);
 
-        formData.append('accepted_in',this.state.accepted_in);
+        // formData.append('accepted_in',this.state.accepted_in);
 
-        formData.append('pickup_charge',this.state.pickup_charge);
+        // formData.append('pickup_charge',this.state.pickup_charge);
 
-        formData.append('specs_description',this.state.specs_description);
+        // formData.append('specs_description',this.state.specs_description);
 
-        formData.append('features_description',this.state.features_description);
+        // formData.append('features_description',this.state.features_description);
 
         formData.append('car_rental_company_id',this.state.car_rental_company_id);
         formData.append('car_rental_company_name',this.state.car_rental_company_name);
+        formData.append('terms',this.state.terms);
 
         e.target.reset();
 
@@ -372,36 +375,40 @@ class AddProducts extends React.Component {
                       <TextField name={"color_available"} fullWidth onChange={this.handleChange}  value={this.state.color_available} label={"Available Color"} placeholder={"Write color name separated with comma"} />
                       <br/><br/>
 
-                      <TextField name={"additional_mileage"} fullWidth onChange={this.handleChange}  value={this.state.additional_mileage} label={"Additional mileage info"} placeholder={"e.g AED 100/hr"} />
+                      <TextField name={"doors"} fullWidth onChange={this.handleChange}  value={this.state.doors} label={"Doors"} placeholder={"e.g 2 doors "} />
                       <br/><br/>
 
-                      <TextField name={"toll_charge"} fullWidth onChange={this.handleChange}  value={this.state.toll_charge} label={"Toll charge"} placeholder={"Toll charge"} />
+                      <TextField name={"transmission"} fullWidth onChange={this.handleChange}  value={this.state.transmission} label={"Transmission"} placeholder={"Toll charge"} />
                       <br/><br/>
+                      {/* <TextField name={"toll_charge"} fullWidth onChange={this.handleChange}  value={this.state.toll_charge} label={"Toll charge"} placeholder={"Toll charge"} />
+                      <br/><br/> */}
 
-                     <TextField name={"excess_claim"} fullWidth onChange={this.handleChange}  value={this.state.excess_claim} label={"Excess claim"} placeholder={""} />
+                     <TextField name={"engine"} fullWidth onChange={this.handleChange}  value={this.state.engine} label={"Engine"} placeholder={""} />
                   <br/><br/>
-                      <TextField name={"security_deposit"} fullWidth onChange={this.handleChange}  value={this.state.security_deposit} label={"Rental period"} placeholder={"Daily Rent"} />
-                      <br/><br/>
+                     {/* <TextField name={"excess_claim"} fullWidth onChange={this.handleChange}  value={this.state.excess_claim} label={"Excess claim"} placeholder={""} />
+                  <br/><br/> */}
+                      {/* <TextField name={"security_deposit"} fullWidth onChange={this.handleChange}  value={this.state.security_deposit} label={"Rental period"} placeholder={"Daily Rent"} />
+                      <br/><br/> */}
 
 
 
-                      <TextField name={"accepted_in"} fullWidth onChange={this.handleChange}  value={this.state.accepted_in} label={"Accepted In"} placeholder={"Payment accepted by atm or other way"} />
-                      <br/><br/>
+                      {/* <TextField name={"accepted_in"} fullWidth onChange={this.handleChange}  value={this.state.accepted_in} label={"Accepted In"} placeholder={"Payment accepted by atm or other way"} />
+                      <br/><br/> */}
 
-                      <TextField name={"pickup_charge"} fullWidth onChange={this.handleChange}  value={this.state.pickup_charge} label={"Pickup charges"} placeholder={"Pickup charges"} />
-                      <br/><br/>
-
+                      {/* <TextField name={"pickup_charge"} fullWidth onChange={this.handleChange}  value={this.state.pickup_charge} label={"Pickup charges"} placeholder={"Pickup charges"} />
+                      <br/><br/> */}
+{/* 
                       <Typography  variant={"h5"}>Car Specification<small style={{fontSize:".7rem"}}>(Enter Car specifications separated with comma like 4 door, fit for 5 passengers)</small></Typography>
-                      <br/>
-                      <TextareaAutosize style={{width:"70%"}} fullWidth name="specs_description" value={this.state.specs_description} onChange={this.handleChange} id="car-descriptions"  aria-label="minimum height" rowsMin={3} placeholder="Car specification" />
+                      <br/> */}
+                      {/* <TextareaAutosize style={{width:"70%"}} fullWidth name="specs_description" value={this.state.specs_description} onChange={this.handleChange} id="car-descriptions"  aria-label="minimum height" rowsMin={3} placeholder="Car specification" />
                       <br/><br/>
                       <Typography  variant={"h5"}>Car Features<small style={{fontSize:".7rem"}}>(Car features separated with comma like cruise control, FM radio)</small></Typography>
                      <br/>
                       <TextareaAutosize style={{width:"70%"}} fullWidth name="features_description" value={this.state.features_description} onChange={this.handleChange} id="car-descriptions"  aria-label="minimum height" rowsMin={3} placeholder="Car features" />
-                      <br/><br/>
-                      <Typography variant={"h5"}>Overall Car Description</Typography>
+                      <br/><br/> */}
+                      <Typography variant={"h5"}>Terms and Condition</Typography>
                       <br/>
-                      <TextareaAutosize style={{width:"70%"}} fullWidth name="descriptions" onChange={this.handleChange} id="car-descriptions"  aria-label="minimum height" rowsMin={3} placeholder="Enter your car descriptions here" />
+                      <TextareaAutosize style={{width:"70%"}} fullWidth name={"terms"}  value={this.state.terms}  onChange={this.handleChange} id="car-descriptions"  aria-label="minimum height" rowsMin={3} placeholder="Enter Terms And Conditions Here" />
 
 
                       <br/><br/>

@@ -29,10 +29,21 @@ const useStyles  = theme=>({
 
 });
 
+const initialState = {
+    name:"",
+    model:"",
+    location:"",
+    descriptions:"",
+    image:[],
+    daily_cost:"",
+}
 class UserEdit extends React.Component {
     constructor(props){
         super(props);
         this.state = {
+            ...initialState,
+            
+
             showDealer:false,
             select_type:"",
             license_no:"",
@@ -218,7 +229,7 @@ class UserEdit extends React.Component {
                             <TextField  name={"trade_no"} onChange={this.handleChange}     fullWidth label={"Trade no"} name={"trade_no"}/>
                         </Grid>
 
-                            {/*<Grid item xs={10} sm={10} md={5} style={{padding:"1em 1em 0 0"}} >*/}
+                            {/* <Grid item xs={10} sm={10} md={5} style={{padding:"1em 1em 0 0"}} >*/}
                             {/*    <TextField*/}
                             {/*        fullWidth*/}
                             {/*        id="date"*/}
@@ -234,7 +245,7 @@ class UserEdit extends React.Component {
                             {/*        }}*/}
                             {/*    />*/}
 
-                            {/*</Grid>*/}
+                            {/*</Grid> */}
 
                                 <Grid item xs={10} sm={10} md={5} style={{padding:"1em 1em 0 0"}} >
                                     <TextField
