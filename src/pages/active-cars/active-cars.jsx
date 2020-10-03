@@ -79,7 +79,7 @@ class ActiveCars extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleDialogClose = this.handleDialogClose.bind(this);
     this.handleDialogOK = this.handleDialogOK.bind(this);
-    this.updateStatusPause = this.updateStatusPause.bind(this);
+    // this.updateStatusPause = this.updateStatusPause.bind(this);
 
     this.state = {
       dialogText: "",
@@ -134,11 +134,34 @@ class ActiveCars extends React.Component {
         console.log(err);
       });
   }}
-  updateStatusPause(id) {
+  updateToPause(id) {
     console.log("Working");
 
     let newData = {
       status: "pause",
+    };
+
+    fetch(updateStatus + id, {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newData),
+    })
+      .then((response) => response.json())
+      .then((newData) => {
+        console.log("Success:", newData);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+
+  updateToResume(id) {
+    console.log("Activated");
+
+    let newData = {
+      status: "active",
     };
 
     fetch(updateStatus + id, {
@@ -323,14 +346,15 @@ class ActiveCars extends React.Component {
                       <br></br>
                       <IconButton
                         className="car-btns product-action-btn-margin"
-                        onClick={this.updateStatusPause(singleValue._id)}
+                        onClick={()=>{ this.updateToPause(singleValue._id)}}
                       >
                         <FaPause />
                       </IconButton>
                       <br></br>
-                      <IconButton className="car-btns product-action-btn-margin">
+                      <IconButton className="car-btns product-action-btn-margin"
+                      onClick={()=>{ this.updateToResume(singleValue._id)}}>
                         <PlayArrowIcon />
-                      </IconButton>
+                      </IconButton> 
                     </TableCell>
                   </TableRow>
                 ))}
