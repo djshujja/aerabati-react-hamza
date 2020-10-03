@@ -118,12 +118,10 @@ class ActiveCars extends React.Component {
   }
 
   deleteProduct(id) {
-    // this.handleDialogClose();
-
-    const data = this.state.data.filter(
-      (singleValue) => singleValue._id !== id
-    );
-
+    if(window.confirm("Are you sure?")){
+      const data = this.state.data.filter(
+        (singleValue) => singleValue._id !== id
+      );
     axios
       .get(deleteProduct + id)
       .then((res) => {
@@ -135,7 +133,7 @@ class ActiveCars extends React.Component {
       .catch((err) => {
         console.log(err);
       });
-  }
+  }}
   updateStatusPause(id) {
     console.log("Working");
 
