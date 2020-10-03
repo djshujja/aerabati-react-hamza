@@ -434,7 +434,7 @@ class AddProducts extends React.Component {
                   <Grid container direction={"column"}>
                       <Grid item sm>
                           <Button  type={"submit"} className={"MuiButton-text primary-btn-red"}  variant={"contained"} color={"primary"}>
-                             Add Product
+                             Add Car
                           </Button>
                           <Typography>{
                               this.state.message ? this.state.message : ""

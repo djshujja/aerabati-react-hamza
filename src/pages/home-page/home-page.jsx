@@ -18,7 +18,7 @@ class HomePage extends React.Component {
             searchCarsData:[],
             search_location:"",
             search_model:"",
-            search_company:"",
+            search_name:"",
             message:"",
             search_result:false,// no search or search result is found
         };
@@ -60,14 +60,15 @@ class HomePage extends React.Component {
     searched = ()=>{
 
 
-        let {search_company,search_location,search_model} = this.state;
-      //  if(search_company && search_location && search_result){
+        let {search_name,search_location,search_model} = this.state;
+       if(search_name || search_location || search_model){
             axios.get(
-                searchCars+"?name="+search_company
+                searchCars+"?name="+this.state.search_name
                 +"&location="+this.state.search_location
                 +"&model="+this.state.search_model
             ).then(resData=>{
-
+                    if(resData.data == null || resData.data == "") return alert("No Cars Found")
+                    console.log(resData)
                 this.setState({
                     searchCarsData:resData.data,
 
@@ -75,11 +76,11 @@ class HomePage extends React.Component {
             }).catch(err=>{
                 console.log(err);
             })
-        // }else{
-        //     this.setState({
-        //         message:"All Search fields are required"
-        //     })
-        // }
+        }else{
+            this.setState({
+                message:"All Search fields are required"
+            })
+        }
 
 
     }
@@ -135,16 +136,16 @@ class HomePage extends React.Component {
                             <Grid container>
                                 <Grid item xs={12} sm={3}>
 
-                                    <input type="text" className="home_search_input" name={"search_location"} placeholder={"Search location"} value={this.state.search_location} onChange={this.handleChange}/>
+                                    <input type="text" className="home_search_input" name={"search_location"} placeholder={"Search Location"} value={this.state.search_location} onChange={this.handleChange}/>
                                 </Grid>
                                 <Grid item xs={12} sm={3}>
-                                    <input type="text" className="home_search_input" name={"search_company"} placeholder={"search Company"} value={this.state.search_company} onChange={this.handleChange}/>
+                                    <input type="text" className="home_search_input" name={"search_name"} placeholder={"Search Car Make"} value={this.state.search_name} onChange={this.handleChange}/>
 
                                 </Grid>
                                 <Grid item xs={12} sm={3}>
                                     <FormControl style={{ width: '95%' }}>
 
-                                        <input type="text" className="home_search_input" name={"search_model"} placeholder={"search model"} value={this.state.search_model} onChange={this.handleChange}/>
+                                        <input type="text" className="home_search_input" name={"search_model"} placeholder={"Search Model"} value={this.state.search_model} onChange={this.handleChange}/>
 
                                     </FormControl>
                                 </Grid>

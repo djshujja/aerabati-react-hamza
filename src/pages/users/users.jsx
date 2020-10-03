@@ -32,17 +32,18 @@ class Users extends React.Component {
     }
 
     deleteUser = (id)=>{
-
+        
+      if(window.confirm("Are you sure you want to delete")){
       axios.get(deleteUser+id).then(()=>{
           this.props.deleteUserAction(id);
-
+      
 
       }).catch(err=>{
 
           // this.setState({
           //     message:err.response.data.error,
           // })
-      })
+      })}
     }
 
     render(){

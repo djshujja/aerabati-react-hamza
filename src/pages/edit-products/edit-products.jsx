@@ -126,10 +126,10 @@ class EditProducts extends React.Component {
                car_type:data.car_type,
                car_rental_company_name:data.car_rental_company_name,
                car_image:data.imagePath,
-               doors:"",
-               transmission:"",
-               engine:"",
-               terms:"",
+               doors:data.doors,
+               transmission:data.transmission,
+               engine:data.engine,
+               terms:data.terms,
                multiple_image_path:data.multiple_image_path
 
            })
@@ -213,8 +213,9 @@ class EditProducts extends React.Component {
        
         axios.post(updateProducts+this.id, formData, {
       }).then(res => {
+        alert('Car Information Updated Successfully')
          this.setState({
-             message:"Product updated successfully. Please refresh a page"
+             message:"Car Information updated successfully"
          })
       }).catch(err=>{
           console.log("error received "+err);
@@ -353,7 +354,7 @@ class EditProducts extends React.Component {
                             <Grid container direction={"column"}>
                                 <Grid item sm>
                                     <Button  type={"submit"} className={"MuiButton-text primary-btn-red"}  variant={"contained"} color={"primary"}>
-                                        Update Product
+                                        Update Car Information
                                     </Button>
                                     {
                                         this.state.message ? <Typography>{this.state.message}</Typography>:""
