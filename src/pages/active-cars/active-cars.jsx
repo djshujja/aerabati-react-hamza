@@ -1,12 +1,10 @@
 import React from "react";
 import {
- 
   Grid,
   FormControl,
   InputLabel,
   Select,
   MenuItem,
-  
   Table,
   TableContainer,
   TableBody,
@@ -14,16 +12,16 @@ import {
   TableRow,
   TableCell,
 } from "@material-ui/core";
-import { FaTrashAlt, FaPencilAlt,FaPause } from "react-icons/fa";
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import { FaTrashAlt, FaPencilAlt, FaPause } from "react-icons/fa";
+import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import { PrimaryTemplate } from "../../template";
 import { AdminTemplate } from "../../template";
-
 
 import axios from "axios";
 import {
   getAllProductsDetailsUrl,
   deleteProduct,
+  updateStatus,
 } from "../../assets/serverUrls";
 import serverHostName from "./../../assets/serverHost";
 import { Link } from "react-router-dom";
@@ -31,37 +29,43 @@ import { withStyles } from "@material-ui/core/styles";
 import Checkbox from "@material-ui/core/Checkbox";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogActions from '@material-ui/core/DialogActions';
+import DialogActions from "@material-ui/core/DialogActions";
 import { DialogContentText } from "@material-ui/core";
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
-import CloseIcon from '@material-ui/icons/Close';
-import Typography from '@material-ui/core/Typography';
+import CloseIcon from "@material-ui/icons/Close";
+import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import IconButton from '@material-ui/core/IconButton';
+import IconButton from "@material-ui/core/IconButton";
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     margin: 0,
     padding: theme.spacing(2),
   },
   closeButton: {
-    position: 'absolute',
+    position: "absolute",
     right: theme.spacing(1),
     top: theme.spacing(1),
     color: theme.palette.grey[500],
   },
   dialogText: {
-    color: theme.palette.blue
-  }
+    color: theme.palette.blue,
+  },
 });
-
-const DialogTitle = withStyles(styles)(props => {
+const initialState = {
+  status: "",
+};
+const DialogTitle = withStyles(styles)((props) => {
   const { children, classes, onClose, ...other } = props;
   return (
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
       <Typography variant="h6">{children}</Typography>
       {onClose ? (
-        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+        <IconButton
+          aria-label="close"
+          className={classes.closeButton}
+          onClick={onClose}
+        >
           <CloseIcon />
         </IconButton>
       ) : null}
@@ -73,46 +77,51 @@ class ActiveCars extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
-	  this.handleDialogClose = this.handleDialogClose.bind(this);
-	  this.handleDialogOK = this.handleDialogOK.bind(this);
+    this.handleDialogClose = this.handleDialogClose.bind(this);
+    this.handleDialogOK = this.handleDialogOK.bind(this);
+    this.updateStatusPause = this.updateStatusPause.bind(this);
+
     this.state = {
-      dialogText: '',
-        isDialogOpen: false,
-		isChecked: false,
+      dialogText: "",
+      isDialogOpen: false,
+      isChecked: false,
       data: [],
-    }
-    
+    };
   }
   handleDialogOK() {
-    console.log('Clicked OK!');
-    
+    console.log("Clicked OK!");
+
     this.setState({
-      isDialogOpen: false
+      isDialogOpen: false,
     });
   }
 
-handleDialogClose() {
+  handleDialogClose() {
     this.setState({
-      isDialogOpen: false
+      isDialogOpen: false,
     });
   }
 
-handleChange(e) {
+  handleChange(e) {
     const target = e.target;
-  const value = target.checked;
-  
-  this.setState({
-  isChecked: value,
-  isDialogOpen: true
-  }, ()=> {console.log('Open Dialog')});
-}
+    const value = target.checked;
 
-  
+    this.setState(
+      {
+        isChecked: value,
+        isDialogOpen: true,
+      },
+      () => {
+        console.log("Open Dialog");
+      }
+    );
+  }
+
   deleteProduct(id) {
-    this.handleDialogClose();
+    // this.handleDialogClose();
+
     const data = this.state.data.filter(
-      (singleValue) => singleValue._id !== id,
- 
+      (singleValue) => singleValue._id !== id
     );
 
     axios
@@ -127,8 +136,33 @@ handleChange(e) {
         console.log(err);
       });
   }
+  updateStatusPause(id) {
+    console.log("Working");
+
+    let newData = {
+      status: "pause",
+    };
+
+    fetch(updateStatus + id, {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newData),
+    })
+      .then((response) => response.json())
+      .then((newData) => {
+        console.log("Success:", newData);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
 
   componentDidMount() {
+    this.setState({
+      status: !this.status,
+    });
     axios
       .get(getAllProductsDetailsUrl)
       .then((res) => {
@@ -142,6 +176,7 @@ handleChange(e) {
       })
       .catch((err) => {});
   }
+
   render() {
     const { classes } = this.props;
     return (
@@ -221,70 +256,83 @@ handleChange(e) {
                       {singleValue.model}
                     </TableCell>
                     <TableCell style={{ border: "1px solid #ddd" }}>
-                      Showroom
+                      {singleValue.status}
                     </TableCell>
                     <TableCell style={{ border: "1px solid #ddd" }}>
                       {singleValue.rental_cost}
                     </TableCell>
                     <TableCell style={{ border: "1px solid #ddd" }}>
-                      {/* <IconButton  className="car-btns product-action-btn-margin"
+                      <IconButton
+                        className="car-btns product-action-btn-margin"
                         onClick={() => {
                           this.deleteProduct(singleValue._id);
                         }}
-                      > */}
-                        {/* <FaTrashAlt /> */}
-                      {/* </IconButton> */}
-                      <div>
-			{/* <Checkbox id="chkOpenDialog" onChange={this.handleChange} checked={this.state.isChecked}></Checkbox> */}
-      <IconButton  className="car-btns product-action-btn-margin"
-                        onClick={this.handleChange}
                       >
                         <FaTrashAlt />
                       </IconButton>
-    	<Dialog
-                open={this.state.isDialogOpen}
-                onClose={this.handleDialogClose}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-            >
-              <DialogTitle id="customized-dialog-title" onClose={this.handleDialogClose}>
-                  {"Message from Application"}
-              </DialogTitle>
-              <DialogContent>
-                <DialogContentText id="alert-dialog-description" className="sd">
-                  fd
-                </DialogContentText>
-                <DialogActions>
-                  <Button color="primary"    onClick={() => {
-                          this.deleteProduct(singleValue._id) ; 
-                        }}>
-                      OK
-                  </Button>
-                  <Button color="primary" onClick={this.handleDialogClose}>
-                      Cancel
-                  </Button>
-                </DialogActions>
-              </DialogContent>  
-          </Dialog>
-		</div>
+                      {/* <div> */}
+                      {/* <Checkbox id="chkOpenDialog" onChange={this.handleChange} checked={this.state.isChecked}></Checkbox> */}
+                      {/* <IconButton
+                          className="car-btns product-action-btn-margin"
+                          onClick={this.handleChange}
+                        >
+                          <FaTrashAlt />
+                        </IconButton>
+                        <Dialog
+                          open={this.state.isDialogOpen}
+                          onClose={this.handleDialogClose}
+                          aria-labelledby="alert-dialog-title"
+                          aria-describedby="alert-dialog-description"
+                        >
+                          <DialogTitle
+                            id="customized-dialog-title"
+                            onClose={this.handleDialogClose}
+                          >
+                            {"Delete?"}
+                          </DialogTitle>
+                          <DialogContent>
+                            <DialogContentText
+                              id="alert-dialog-description"
+                              className="sd"
+                            >
+                              Are you sure you want to delete this?
+                            </DialogContentText>
+                            <DialogActions>
+                              <Button
+                                color="primary"
+                                onClick={() => {
+                                  this.deleteProduct(singleValue._id);
+                                }}
+                              >
+                                OK
+                              </Button>
+                              <Button
+                                color="primary"
+                                onClick={this.handleDialogClose}
+                              >
+                                Cancel
+                              </Button>
+                            </DialogActions>
+                          </DialogContent>
+                        </Dialog> */}
+                      {/* </div> */}
                       <Link to={`/edit-products/` + singleValue._id}>
                         {" "}
                         <IconButton className="car-btns product-action-btn-margin">
                           <FaPencilAlt />
                         </IconButton>
-                        </Link>
-                        <br></br>
-                        <IconButton 
-                                                className   =   "car-btns product-action-btn-margin">
-                                                <FaPause />
-                                            </IconButton>
-                                            <br></br>
-                                            <IconButton 
-                                                className   =   "car-btns product-action-btn-margin">
-                                                <PlayArrowIcon />
-                                            </IconButton>
-
-                     
+                      </Link>
+                      <br></br>
+                      <IconButton
+                        className="car-btns product-action-btn-margin"
+                        onClick={this.updateStatusPause(singleValue._id)}
+                      >
+                        <FaPause />
+                      </IconButton>
+                      <br></br>
+                      <IconButton className="car-btns product-action-btn-margin">
+                        <PlayArrowIcon />
+                      </IconButton>
                     </TableCell>
                   </TableRow>
                 ))}

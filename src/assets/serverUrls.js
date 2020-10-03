@@ -40,3 +40,5 @@ export const searchCars = serverHostName + "/api/cars/search-car";
 export const allshowrooms = serverHostName + "/api/showrooms";
 export const allbookings = serverHostName + "/api/bookings";
 export const bookings = serverHostName + "/api/bookings/new";
+export const updateStatus =
+  serverHostName + "/api/admin-panel/products/status/";
