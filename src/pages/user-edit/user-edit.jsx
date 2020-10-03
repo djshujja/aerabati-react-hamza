@@ -1,33 +1,23 @@
 import React from 'react';
-import { Typography, Grid,form, FormControl, InputLabel,
-    TextField, Select, MenuItem, Button } from '@material-ui/core';
-import isAnyEmptyField from "../../assets/utils/checkAllObjectFields";
+import {
+    Typography,
+    form,
+    FormControl,
+    InputLabel,
+    Input,
+    TextareaAutosize,
+    Button,
+    Select,
+    TextField, Grid
+} from '@material-ui/core';
+
 import { PrimaryTemplate } from '../../template';
 import { AdminTemplate } from '../../template';
 
-import { makeDealers,makeManager,makeAdmin } from './../../assets/serverUrls';
+import { editSpecificProduct,updateProducts } from '../../assets/serverUrls';
 import axios from "axios";
 import {withRouter} from "react-router-dom";
-
-
-import "react-datepicker/dist/react-datepicker.css";
-import {withStyles} from "@material-ui/styles";
-
-import {connect} from "react-redux";
-import {selectUserPermissions} from "../../redux/registration/registration.reselect";
-import {createStructuredSelector} from "reselect";
-
-
-const useStyles  = theme=>({
-    itemSpace:{
-        marginTop:"20px",
-        paddingTop:"20px",
-        backgroundColor:"red"
-
-
-    },
-
-});
+import serverHostName from "../../assets/serverHost";
 
 const initialState = {
     name:"",
@@ -36,312 +26,278 @@ const initialState = {
     descriptions:"",
     image:[],
     daily_cost:"",
+    monthly_cost:"",
+    weekly_cost:"",
+    daily_mileage_limit:"",
+    monthly_mileage_limit:"",
+    weekly_mileage_limit:"",
+    color_available:"",
+    doors:"",
+    transmission:"",
+    engine:"",
+    additional_mileage:"",
+    toll_charge:"",
+    excess_claim:"",
+    security_deposit:"",
+    accepted_in:"",
+    pickup_charge:"",
+//    car specification
+    specs_description:"",
+    //car features
+    features_description:"",
+    terms:"",
+
+
+
+    car_type:"",
+
+    car_image:"",
+    multiple_image_path:"",
+
+
 }
+
 class UserEdit extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            ...initialState,
-            
+   constructor(props){
+       super(props);
+       this.state = {
+         ...initialState,
+           message:"",
 
-            showDealer:false,
-            select_type:"",
-            license_no:"",
-            trade_no:0,
-            license_expiration_date:"",
-           // license_expiration_date:"",
-            contract_start_date:"",
-            contract_end_date:"",
-            message:"",
+       
 
-            // name:"",
-            // model:"",
-            // location:"",
-            // descriptions:"",
-            // image:"",
+        
+       }
+       const {id} = this.props.match.params;
+       this.id  =id;
+
+       this.handleChange = this.handleChange.bind(this);
+       this.handleSubmit = this.handleSubmit.bind(this);
+       this.handleFileChange = this.handleFileChange.bind(this);
+      
+   }
 
 
 
-        }
+    handleFileChange(e){
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleSelectChange = this.handleSelectChange.bind(this);
-
+        this.setState({
+            image: [...this.state.image, ...e.target.files]
+        })
     }
 
-    handleSelectChange(e){
-       let showDealer = false;
-      if(e.target.value === "dealer"){
-          showDealer = true;
+    componentDidMount(){
+
+
+   
+       axios.get(editSpecificProduct+this.id)
+       .then(res=>{
+           const data = JSON.parse(res.data);
+          console.log(data);
+         
+           this.setState({
+               name:data.name,
+               model:data.model,
+               location:data.location,
+               descriptions:data.descriptions,
+
+
+
+               daily_cost:"100 AED",
+            monthly_cost:"2000 AED",
+            weekly_cost:"450 AED",
+            daily_mileage_limit:"100 KM",
+            monthly_mileage_limit:"1000 KM",
+            weekly_mileage_limit:"500 KM",
+               color_available:data.color_available,
+               additional_mileage:data.additional_mileage,
+               toll_charge:data.toll_charge,
+               excess_claim:data.excess_claim,
+               security_deposit:data.security_deposit,
+               accepted_in:data.accepted_in,
+               pickup_charge:data.pickup_charge,
+//    car specification
+               specs_description:data.specs_description,
+               //car features
+               features_description:data.features_description,
+               car_rental_company_id:data.car_rental_company_name,
+              // company_names:[],
+
+               car_type:data.car_type,
+               car_rental_company_name:data.car_rental_company_name,
+               car_image:data.imagePath,
+               doors:"",
+               transmission:"",
+               engine:"",
+               terms:"",
+               multiple_image_path:data.multiple_image_path
+
+           })
+       }).catch(err=>{
+           console.log("err received "+err);
+       })
+        
+   }
+
+   handleChange(e){
+       this.setState({
+        [e.target.name]:e.target.value
+       })
       }
 
+    onClickImageBtn = (e)=>{
+        e.target.value="";
         this.setState({
-            [e.target.name]:e.target.value,
-            showDealer
+            image:[],
         })
     }
-    handleChange(e){
-        this.setState({
-            [e.target.name]:e.target.value,
-
-        })
-    }
-
-
 
     handleSubmit(e){
         e.preventDefault();
-
-        console.log(this.props);
-
-        const {match:{params:{id}}} = this.props;
-
-
+        let formData = new FormData();
+        this.setState({
+            message:"please wait..."
+        })
 
 
-            if (this.state.showDealer) {
-
-                console.log(this.state);
-
-
-                if (!isAnyEmptyField(this.state, "message")) {
-                    axios.post(makeDealers, {
-
-                        ...this.state,
-                        user_id: id,
-
-                    }).then(data => {
-                     //   console.log(data);
-                        this.props.history.push("/users");
-
-
-
-                        // this.setState({
-                        //     message: "Done!"
-                        // })
-                    }).catch(err => {
-
-
-                        this.setState({
-                            message: err.response.data.error
-                        })
-                    })
-                } else {
-                    alert("All Fields are required")
-                }
-            } else if (this.state.select_type === "admin") {
-
-                axios.get(makeAdmin + id).then(res => {
-                    this.props.history.push("/users");
-                  //  this.showMessage(res.data)
-                }).catch(err => {
-                  //  console.log(err.response.data);
-                    this.showMessage(err.response.data.error);
-                })
-            } else {
-
-
-                axios.get(makeManager + id).then(res => {
-                    this.props.history.push("/users");
-                    // this.showMessage(res.data)
-                }).catch(err => {
-                  //  console.log(err.response.data.error);
-                   this.showMessage(err.response.data.error);
-                })
+        if(this.state.image.length > 0) {
+            for(let i = 0; i < this.state.image.length;i++){
+                formData.append('image'+i,this.state.image[i]);
 
             }
 
 
-    }
+        }
 
-    showMessage = (msg)=>{
-        this.setState({
-            message:msg
-        });
-    };
+        formData.append("multiple_image_path",this.state.multiple_image_path);
+        formData.append("old_image_path",this.state.car_image);
+
+        formData.append('name',this.state.name);
+        formData.append('model',this.state.model);
+        formData.append('location',this.state.location);
+        formData.append('descriptions',this.state.descriptions);
+
+        formData.append('daily_cost',this.state.daily_cost);
+        formData.append('monthly_cost',this.state.monthly_cost);
+        formData.append('weekly_cost',this.state.weekly_cost);
+        formData.append('daily_mileage_limit',this.state.daily_mileage_limit);
+        formData.append('weekly_mileage_limit',this.state.weekly_mileage_limit);
+        formData.append('monthly_mileage_limit',this.state.monthly_mileage_limit);
+        formData.append('color_available',this.state.color_available);
+        formData.append('doors',this.state.doors);
+        formData.append('transmission',this.state.transmission);
+        formData.append('engine',this.state.engine);
+        formData.append('car_rental_company_name',this.state.terms);
+        formData.append('additional_mileage',this.state.additional_mileage);
+        formData.append('toll_charge',this.state.toll_charge);
+        formData.append('excess_claim',this.state.excess_claim);
+        formData.append('car_type',this.state.car_type);
+
+        formData.append('security_deposit',this.state.security_deposit);
+
+        formData.append('accepted_in',this.state.accepted_in);
+
+        formData.append('pickup_charge',this.state.pickup_charge);
+
+        formData.append('specs_description',this.state.specs_description);
+
+        formData.append('features_description',this.state.features_description);
+
+
+
+        
+
+       
+    
+   
+       
+        axios.post(updateProducts+this.id, formData, {
+      }).then(res => {
+         this.setState({
+             message:"Product updated successfully. Please refresh a page"
+         })
+      }).catch(err=>{
+          console.log("error received "+err);
+      })
+ 
+
+      
+
+    }  
     render(){
-          const {classes} = this.props;
-
-
-
-
-
+       
         return (
             <PrimaryTemplate>
-                <AdminTemplate >
+                <AdminTemplate>
 
-
-                    <Typography variant={"h5"} style={{marginLeft:20}}>
-                        {/* <h2>Add Car Items</h2> */}
-                       User Permissions
+                    <Typography variant={"h3"} style={{marginLeft:20}}>
+                      Edit User
                     </Typography>
 
+                    <div className="container" style={{margin:20}}>
+                        <form onSubmit={this.handleSubmit} encType="multipart/form-data">
+                            <FormControl fullWidth={true}>
+                                <InputLabel htmlFor="car-name" >Car Name</InputLabel>
 
-                   <Typography variant={"h6"} color={"secondary"}>
-                       {
-                           this.state.message ? this.state.message : ""
-                       }
-                   </Typography>
-                    <form onSubmit={this.handleSubmit} method={"POST"}>
+                                <Input value={this.state.name} name="name" id="car-name" aria-describedby="my-helper-text"
+                                       onChange={
+                                           this.handleChange
+                                       }
+                                />
 
-                    <Grid container className="container" direction={"column"} style={{margin:20}}>
-                        <Grid item container>
-                        <Grid item xs={10} sm={10} md={5}  style={{padding:"1em 1em 0 0"}}>
-
-
-                            <FormControl   fullWidth>
-                                <InputLabel id="demo-simple-select-label">Make A</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
-                                    fullWidth
-                                    name={"select_type"}
-                                    onChange={this.handleSelectChange}
-                                    value={this.state.select_type}
-                                 >
-                                    {
-                                        this.props.selectUserPermissions.read && this.props.selectUserPermissions.write && this.props.selectUserPermissions.edit && this.props.selectUserPermissions.delete
-                                        ? (     <MenuItem value={"admin"}>Admin</MenuItem>):""
-                                    }
-
-
-
-                                    <MenuItem value={"manager"}>Manager</MenuItem>
-                                    <MenuItem value={"dealer"}>Dealer</MenuItem>
-                                </Select>
                             </FormControl>
-                        </Grid>
+                            <br/> <br/>
 
-                            {
-                                this.state.showDealer ? (
+                            <FormControl fullWidth={true}>
 
+                                <InputLabel htmlFor="car-model" >Car Model</InputLabel>
+                                <Input value={this.state.model} name="model" id="car-model" aria-describedby="my-helper-text"
 
-                            <Grid item container>
+                                       onChange={
+                                           this.handleChange
+                                       }
+                                />
 
+                            </FormControl>
 
+                            <br/> <br/>
 
-                        <Grid item xs={10} sm={6} md={5} style={{padding:"1em 1em 0 0"}}>
-                            <TextField  name={"license_no"} onChange={this.handleChange}   fullWidth label={"License no"} name={"license_no"}/>
-                        </Grid>
+                            <FormControl fullWidth={true} >
+                                <InputLabel htmlFor="car-location" >Location</InputLabel>
+                                <Input value={this.state.location} name="location" id="car-location" aria-describedby="my-helper-text"
 
-                        <Grid item xs={10} sm={10} md={5} style={{padding:"1em 1em 0 0"}}>
-                            <TextField  name={"trade_no"} onChange={this.handleChange}     fullWidth label={"Trade no"} name={"trade_no"}/>
-                        </Grid>
+                                       onChange={
+                                           this.handleChange
+                                       }
+                                />
 
-                            {/* <Grid item xs={10} sm={10} md={5} style={{padding:"1em 1em 0 0"}} >*/}
-                            {/*    <TextField*/}
-                            {/*        fullWidth*/}
-                            {/*        id="date"*/}
-                            {/*        label="License Expiration Date"*/}
-                            {/*        type="date"*/}
-                            {/*        name={"license_expiration_date"}*/}
-                            {/*        onChange={this.handleChange}*/}
-
-                            {/*        value={this.state.license_expiration_date}*/}
-                            {/*        className={classes.textField}*/}
-                            {/*        InputLabelProps={{*/}
-                            {/*            shrink: true,*/}
-                            {/*        }}*/}
-                            {/*    />*/}
-
-                            {/*</Grid> */}
-
-                                <Grid item xs={10} sm={10} md={5} style={{padding:"1em 1em 0 0"}} >
-                                    <TextField
-                                        fullWidth
-                                        id="date"
-                                        label="License Expiration Date"
-                                        type="date"
-                                        name={"license_expiration_date"}
-                                        value={this.state.license_expiration_date}
-                                        onChange={this.handleChange}
-
-                                        className={classes.textField}
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                    />
-
-                                </Grid>
+                                <br/>
 
 
-
-                        <Grid item xs={10} sm={10} md={5} style={{padding:"1em 1em 0 0"}} >
-                            <TextField
-                                fullWidth
-                                id="date"
-                                label="Contract start date"
-                                type="date"
-                                name={"contract_start_date"}
-                                value={this.state.contract_start_date}
-                                onChange={this.handleChange}
-
-                                className={classes.textField}
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                            />
-
-                        </Grid>
-
-
-                        <Grid item xs={10} sm={10} md={5} style={{padding:"1em 1em 0 0"}} >
-                            <TextField
-                                fullWidth
-                                id="date"
-                                label="Contract End date"
-                                type="date"
-                                name={"contract_end_date"}
-                                onChange={this.handleChange}
-                                value={this.state.contract_end_date}
-
-                                className={classes.textField}
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                            />
-
-                        </Grid>
-                            </Grid>
-                                ):""
-                                }
+                            </FormControl>
 
 
 
 
 
-                            {/*<TextField label={"Start Date"} name={"license_no"}/>*/}
+                            <br/><br/>
 
-                        </Grid>
-                        <br/>
-                       <Grid item>
-                           <Button type={"submit"} onClick={this.handleSubmit}  contained={"variant"} className={"MuiButton-text primary-btn-red"}>
-                               Submit
-                           </Button>
-                       </Grid>
+                            <TextField label={"What type of car"} fullWidth placeholder={"e.g luxury"} onChange={this.handleChange} name={"car_type"} value={this.state.car_type}/>
 
 
+                            <br/><br/>
 
 
-                    </Grid>
-                    </form>
-                    <br/><br/><br/>
+                        </form>
 
 
 
+
+                    </div>
                 </AdminTemplate>
             </PrimaryTemplate>
         )
     }
 }
 
-// UserEdit.defaultProps = {
-//     theme: useTheme,   // ERROR! Failed prop
-// };
-
-const mapStateToProps = createStructuredSelector({
-    selectUserPermissions
-})
-
-export default connect(mapStateToProps)(withRouter(withStyles(useStyles,{withTheme:true})(UserEdit)));
+export default withRouter(UserEdit);

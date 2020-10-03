@@ -135,10 +135,10 @@ class ActiveCars extends React.Component {
       });
   }}
   updateToPause(id) {
-    console.log("Working");
+    document.getElementById("hi").innerHTML=`Paused`
 
     let newData = {
-      status: "pause",
+      status: "Paused",
     };
 
     fetch(updateStatus + id, {
@@ -159,9 +159,10 @@ class ActiveCars extends React.Component {
 
   updateToResume(id) {
     console.log("Activated");
+    document.getElementById("hi").innerHTML=`Active`
 
     let newData = {
-      status: "active",
+      status: "Active",
     };
 
     fetch(updateStatus + id, {
@@ -239,7 +240,7 @@ class ActiveCars extends React.Component {
                 <TableRow>
                   <TableCell style={{ color: "#fff" }}>Model</TableCell>
                   <TableCell style={{ color: "#fff" }}>Year</TableCell>
-                  <TableCell style={{ color: "#fff" }}>Showroom</TableCell>
+                  <TableCell style={{ color: "#fff" }}>Status</TableCell>
                   <TableCell style={{ color: "#fff" }}>Rent</TableCell>
                   <TableCell style={{ color: "#fff" }}>Actions</TableCell>
                 </TableRow>
@@ -265,10 +266,14 @@ class ActiveCars extends React.Component {
                         </Grid>
                         <Grid item md={7} lg={7}>
                           <div className="product-title-container">
-                            <span> {singleValue.title}</span>
+                            <span> {singleValue.name}</span>
+                  
                           </div>
                           <div className="product-desc-container">
-                            <Typography>{singleValue.descriptions}</Typography>
+                            <Typography>{singleValue.doors}</Typography>
+                            <Typography> {singleValue.transmission}</Typography>
+                            <Typography> {singleValue.engine}</Typography>
+                            <Typography> {singleValue.car_type}</Typography>
                           </div>
                         </Grid>
                       </Grid>
@@ -276,11 +281,13 @@ class ActiveCars extends React.Component {
                     <TableCell style={{ border: "1px solid #ddd" }}>
                       {singleValue.model}
                     </TableCell>
-                    <TableCell style={{ border: "1px solid #ddd" }}>
+                    <TableCell style={{ border: "1px solid #ddd" }} id="hi">
                       {singleValue.status}
                     </TableCell>
                     <TableCell style={{ border: "1px solid #ddd" }}>
-                      {singleValue.rental_cost}
+                     Daily cost = {singleValue.daily_cost}
+                     Weekly cost = {singleValue.weekly_cost}
+                     Monthly cost = {singleValue.monthly_cost}
                     </TableCell>
                     <TableCell style={{ border: "1px solid #ddd" }}>
                       <IconButton
@@ -349,8 +356,9 @@ class ActiveCars extends React.Component {
                         onClick={()=>{ this.updateToPause(singleValue._id)}}
                       >
                         <FaPause />
+
                       </IconButton>
-                      <br></br>
+                      
                       <IconButton className="car-btns product-action-btn-margin"
                       onClick={()=>{ this.updateToResume(singleValue._id)}}>
                         <PlayArrowIcon />
