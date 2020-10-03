@@ -50,7 +50,7 @@ class ProductInfo extends React.Component {
             </span>
             <span className="product-rent-seperator">|</span>
             <span variant="h3" className="product-rent">
-              {carsInfo.car_type} / {carsInfo.daily_cost} / Day
+              {carsInfo.car_type}
             </span>
           </div>
 
@@ -360,7 +360,7 @@ class ProductInfo extends React.Component {
                 <div className="product-book-btn-wrapper">
                   <Link to="/form">
                     <Button fullWidth size="large" className="primary-btn-red">
-                      Book A Test Drive
+                      Book A Car For Rent
                     </Button>
                   </Link>
                 </div>

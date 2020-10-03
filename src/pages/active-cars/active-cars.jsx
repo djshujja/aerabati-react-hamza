@@ -118,24 +118,25 @@ class ActiveCars extends React.Component {
   }
 
   deleteProduct(id) {
-    if(window.confirm("Are you sure?")){
+    if (window.confirm("Are you sure?")) {
       const data = this.state.data.filter(
         (singleValue) => singleValue._id !== id
       );
-    axios
-      .get(deleteProduct + id)
-      .then((res) => {
-        console.log(res);
-        this.setState({
-          data: data,
+      axios
+        .get(deleteProduct + id)
+        .then((res) => {
+          console.log(res);
+          this.setState({
+            data: data,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
         });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }}
+    }
+  }
   updateToPause(id) {
-    document.getElementById("hi").innerHTML=`Paused`
+    document.getElementById(id).innerHTML = `Paused`;
 
     let newData = {
       status: "Paused",
@@ -159,7 +160,7 @@ class ActiveCars extends React.Component {
 
   updateToResume(id) {
     console.log("Activated");
-    document.getElementById("hi").innerHTML=`Active`
+    document.getElementById(id).innerHTML = `Active`;
 
     let newData = {
       status: "Active",
@@ -207,7 +208,7 @@ class ActiveCars extends React.Component {
           <Grid container className="search-filter" alignItems="center">
             <Grid item sm={6}>
               <Typography style={{ color: "#cc0000", fontWeight: 700 }}>
-                {this.state.data.length} Acitve Cars
+                {this.state.data.length} Cars
               </Typography>
             </Grid>
             <Grid item sm={6} className="search-filter-select-container">
@@ -235,10 +236,10 @@ class ActiveCars extends React.Component {
           </Grid>
 
           <TableContainer>
-            <Table style={{ width: "99%" }}>
+            <Table style={{ width: "100%" }}>
               <TableHead style={{ backgroundColor: "#09080e", color: "#fff" }}>
                 <TableRow>
-                  <TableCell style={{ color: "#fff" }}>Model</TableCell>
+                  <TableCell style={{ color: "#fff" }}>Name</TableCell>
                   <TableCell style={{ color: "#fff" }}>Year</TableCell>
                   <TableCell style={{ color: "#fff" }}>Status</TableCell>
                   <TableCell style={{ color: "#fff" }}>Rent</TableCell>
@@ -249,7 +250,9 @@ class ActiveCars extends React.Component {
               <TableBody>
                 {this.state.data.map((singleValue) => (
                   <TableRow key={singleValue._id}>
-                    <TableCell style={{ border: "1px solid #ddd" }}>
+                    <TableCell
+                      style={{ border: "1px solid #ddd", width: "500px" }}
+                    >
                       <Grid container spacing={2}>
                         <Grid item md={5} lg={5}>
                           <img
@@ -267,13 +270,37 @@ class ActiveCars extends React.Component {
                         <Grid item md={7} lg={7}>
                           <div className="product-title-container">
                             <span> {singleValue.name}</span>
-                  
                           </div>
                           <div className="product-desc-container">
-                            <Typography>{singleValue.doors}</Typography>
-                            <Typography> {singleValue.transmission}</Typography>
+                            <ul>
+                              <li>
+                                <Typography>
+                                  <b>Doors: </b>
+                                  {singleValue.doors}
+                                </Typography>
+                              </li>
+                              <li>
+                                <Typography>
+                                  {" "}
+                                  <b>Transmission: </b>{" "}
+                                  {singleValue.transmission}
+                                </Typography>
+                              </li>
+                              <li>
+                                <Typography>
+                                  <b>Engine: </b> {singleValue.engine}
+                                </Typography>
+                              </li>
+                              <li>
+                                <Typography>
+                                  <b>Car Type: </b> {singleValue.car_type}
+                                </Typography>
+                              </li>
+                            </ul>
+
+                            {/* <Typography> {singleValue.transmission}</Typography>
                             <Typography> {singleValue.engine}</Typography>
-                            <Typography> {singleValue.car_type}</Typography>
+                            <Typography> {singleValue.car_type}</Typography> */}
                           </div>
                         </Grid>
                       </Grid>
@@ -281,13 +308,23 @@ class ActiveCars extends React.Component {
                     <TableCell style={{ border: "1px solid #ddd" }}>
                       {singleValue.model}
                     </TableCell>
-                    <TableCell style={{ border: "1px solid #ddd" }} id="hi">
+                    <TableCell
+                      style={{ border: "1px solid #ddd" }}
+                      id={singleValue._id}
+                    >
                       {singleValue.status}
                     </TableCell>
-                    <TableCell style={{ border: "1px solid #ddd" }}>
-                     Daily cost = {singleValue.daily_cost}
-                     Weekly cost = {singleValue.weekly_cost}
-                     Monthly cost = {singleValue.monthly_cost}
+                    <TableCell
+                      style={{ border: "1px solid #ddd", width: "260px" }}
+                    >
+                      <b>Daily Rent: </b> {singleValue.daily_cost}
+                      <br />
+                      <b>Weekly Rent: </b>
+                      {singleValue.weekly_cost}
+                      <br />
+                      <b>Monthly Rent: </b>
+                      {singleValue.monthly_cost}
+                      <br />
                     </TableCell>
                     <TableCell style={{ border: "1px solid #ddd" }}>
                       <IconButton
@@ -353,16 +390,21 @@ class ActiveCars extends React.Component {
                       <br></br>
                       <IconButton
                         className="car-btns product-action-btn-margin"
-                        onClick={()=>{ this.updateToPause(singleValue._id)}}
+                        onClick={() => {
+                          this.updateToPause(singleValue._id);
+                        }}
                       >
                         <FaPause />
-
                       </IconButton>
-                      
-                      <IconButton className="car-btns product-action-btn-margin"
-                      onClick={()=>{ this.updateToResume(singleValue._id)}}>
+
+                      <IconButton
+                        className="car-btns product-action-btn-margin"
+                        onClick={() => {
+                          this.updateToResume(singleValue._id);
+                        }}
+                      >
                         <PlayArrowIcon />
-                      </IconButton> 
+                      </IconButton>
                     </TableCell>
                   </TableRow>
                 ))}

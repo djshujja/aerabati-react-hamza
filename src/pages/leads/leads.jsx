@@ -125,19 +125,19 @@ class Leads extends React.Component {
           </Grid>
 
           <TableContainer>
-            <Table style={{ width: "80%" }}>
+            <Table style={{ width: "100%" }}>
               <TableHead style={{ backgroundColor: "#09080e", color: "#fff" }}>
                 <TableRow>
-                  <TableCell style={{ color: "#fff" ,width:"80px"}}>Full Name</TableCell>
+                  <TableCell style={{ color: "#fff", width: "80px" }}>
+                    Full Name
+                  </TableCell>
                   {/* <TableCell style={{ color: "#fff" }}>Last Name</TableCell> */}
                   <TableCell style={{ color: "#fff" }}>Phone No</TableCell>
-                  <TableCell style={{ color: "#fff" }}>Taken Time</TableCell>
-                  <TableCell style={{ color: "#fff" }}>Return Time</TableCell>
-                  <TableCell style={{ color: "#fff" }}>Booking Id</TableCell>
-                  <TableCell style={{ color: "#fff" }}>Status</TableCell>
-                  <TableCell style={{ color: "#fff" }}>
-                    Lead Type                  
-                  </TableCell>
+                  {/* <TableCell style={{ color: "#fff" }}>Taken Time</TableCell> */}
+                  {/* <TableCell style={{ color: "#fff" }}>Return Time</TableCell> */}
+                  {/* <TableCell style={{ color: "#fff" }}>Booking Id</TableCell> */}
+                  {/* <TableCell style={{ color: "#fff" }}>Status</TableCell> */}
+                  <TableCell style={{ color: "#fff" }}>Lead Type</TableCell>
                   <TableCell style={{ color: "#fff" }}>Car</TableCell>
                   <TableCell style={{ color: "#fff" }}>Date</TableCell>
 
@@ -148,11 +148,16 @@ class Leads extends React.Component {
               <TableBody>
                 {this.state.data.map((singleValue) => (
                   <TableRow key={singleValue._id}>
-                    <TableCell style={{ border: "1px solid #ddd" }}>
+                    <TableCell
+                      style={{ border: "1px solid #ddd", width: "250px" }}
+                    >
                       {/* <Grid container spacing={2}> */}
                       {/* <Grid item md={5} lg={4}> */}
                       <div className="product-desc-container">
-                        <span> {singleValue.firstName} {singleValue.lastName}</span>
+                        <span>
+                          {" "}
+                          {singleValue.firstName} {singleValue.lastName}
+                        </span>
                       </div>
                       {/* </Grid> */}
                       {/* </Grid> */}
@@ -167,12 +172,12 @@ class Leads extends React.Component {
                         <Typography>{singleValue.phoneNo}</Typography>
                       </div>
                     </TableCell>
-                    <TableCell style={{ border: "1px solid #ddd" }}>
+                    {/* <TableCell style={{ border: "1px solid #ddd" }}>
                       <div className="product-desc-container">
                         <Typography>{singleValue.takenTime}</Typography>
                       </div>
-                    </TableCell>
-                    <TableCell style={{ border: "1px solid #ddd" }}>
+                    </TableCell> */}
+                    {/* <TableCell style={{ border: "1px solid #ddd" }}>
                       <div className="product-desc-container">
                         <Typography>{singleValue.returnTime}</Typography>
                       </div>
@@ -186,7 +191,7 @@ class Leads extends React.Component {
                       <div className="product-desc-container">
                         <Typography>{singleValue.status}</Typography>
                       </div>
-                    </TableCell>
+                    </TableCell> */}
                     <TableCell style={{ border: "1px solid #ddd" }}>
                       <div className="product-desc-container">
                         <Typography>
@@ -197,12 +202,22 @@ class Leads extends React.Component {
                     </TableCell>
                     <TableCell style={{ border: "1px solid #ddd" }}>
                       <div className="product-desc-container">
-                        <Typography>{singleValue.car.name}</Typography>
+                        <Typography>
+                          {singleValue.car ? (
+                            singleValue.car.name
+                          ) : (
+                            <i>
+                              <b>Car Deleted</b>
+                            </i>
+                          )}
+                        </Typography>
                       </div>
                     </TableCell>
                     <TableCell style={{ border: "1px solid #ddd" }}>
                       <div className="product-desc-container">
-                        <Typography>{singleValue.createdAt.substring(0, 10)}</Typography>
+                        <Typography>
+                          {singleValue.createdAt.substring(0, 10)}
+                        </Typography>
                       </div>
                     </TableCell>
                     {/* <TableCell style={{ border: "1px solid #ddd" }}>
