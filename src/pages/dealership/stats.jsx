@@ -9,6 +9,7 @@ import {DealerShipHeader} from "../../components/dealership-header";
 import { AdminStatBadge } from '../../components/badges';
 
 import {dealerStats} from "../../assets/serverUrls";
+import Chart from '../../components/Chart.js'
 import axios from "axios";
 
 
@@ -39,8 +40,9 @@ class Stats extends React.Component {
                      <DealerShipHeader/>
                     <section className="stat-container" >
                         <Typography variant="h6" className="stat-heading">
-                            Dealership statistics
+                            Dealership statisticss
                         </Typography>
+                        <Chart/>
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6} md={3}>
                                 <AdminStatBadge 

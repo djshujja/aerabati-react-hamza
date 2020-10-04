@@ -6,6 +6,7 @@ import AdminTemplate from "../../template/admin-template";
 import {PrimaryTemplate} from "../../template";
 import {DealerShipHeader} from "../../components/dealership-header";
 
+
 import { AdminStatBadge } from '../../components/badges';
 
 import {dealerStats} from "../../assets/serverUrls";
@@ -38,8 +39,9 @@ class DealershipStats extends React.Component {
                      <div>
                     <section className="stat-container" >
                         <Typography variant="h6" className="stat-heading">
-                            Dealership statistics
+                            Dealership statisticssss
                         </Typography>
+                        {/* <Chart/> */}
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6} md={3}>
                                 <AdminStatBadge 
