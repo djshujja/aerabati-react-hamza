@@ -238,7 +238,7 @@ class Dealership extends React.Component {
                                     <TableCell style={{color: '#fff' }}>Company Name</TableCell>
                                     <TableCell style={{color: '#fff' }}>Contract start</TableCell>
                                     <TableCell style={{color: '#fff' }}>Contract End</TableCell>
-                                    <TableCell style={{color: '#fff' }}>Owner Name</TableCell>
+                                    <TableCell style={{color: '#fff' }}> Sale Rep</TableCell>
 
                                 </TableRow>
                             </TableHead>

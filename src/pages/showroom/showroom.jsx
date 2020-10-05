@@ -94,7 +94,7 @@ class ShowRoom extends React.Component {
                                 <TableCell style={{color: '#fff' }}>Email</TableCell>
                                 <TableCell style={{color: '#fff' }}>Adress</TableCell>
                                 <TableCell style={{color: '#fff' }}>Call Tracking</TableCell>
-                                <TableCell style={{color: '#fff' }}>Edit</TableCell>
+                                <TableCell style={{color: '#fff' }}>Delete</TableCell>
                             </TableRow>
                         </TableHead>
 
@@ -144,15 +144,15 @@ class ShowRoom extends React.Component {
                                                 <FaPause />
                                             </IconButton>
 
-                                            <IconButton 
+                                            {/* <IconButton 
                                                 className   =   "car-btns product-action-btn-margin">
                                                 <FaMinus />
-                                            </IconButton>
-
+                                            </IconButton> */}
+{/* 
                                             <IconButton 
                                                 className   =   "car-btns product-action-btn-margin">
                                                 <FaThumbsUp />
-                                            </IconButton>
+                                            </IconButton> */}
                                         </div>
                                     </Grid>
                                 </Grid>

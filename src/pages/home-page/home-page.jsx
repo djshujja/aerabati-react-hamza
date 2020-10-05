@@ -138,13 +138,13 @@ class HomePage extends React.Component {
                   </Button>
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                  <Button
+                  {/* <Button
                     className="primary-btn-transition"
                     style={{ color: "#fff", margin: "4px 12px" }}
                     startIcon={<FaAnchor />}
                   >
                     Leasing
-                  </Button>
+                  </Button> */}
                 </Grid>
               </Grid>
             </div>

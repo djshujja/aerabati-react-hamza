@@ -98,7 +98,7 @@ const HeaderLogoRow = (props) => {
                     className="primary-btn-red"
                     style={{ marginRight: "25px" }}
                   >
-                    Add A Car
+                    Add New Car
                   </Button>
                 </Link>
                 <Link to="/activecars" className={"link"}>
@@ -119,7 +119,7 @@ const HeaderLogoRow = (props) => {
                       className="primary-btn-red"
                       style={{ marginRight: "25px" }}
                     >
-                      Add A Car
+                      Add New Car
                     </Button>
                     <Button
                       variant="contained"
@@ -147,9 +147,9 @@ const HeaderLogoRow = (props) => {
             </Hidden>
           </div>
         )}
-        }
+        
       </div>
-      : }
+      
     </section>
   );
 };
@@ -170,9 +170,9 @@ const HeaderMenu = (props) => {
           <Button className="primary-btn-red" style={{ marginRight: 10 }}>
             Exotic Car Rent
           </Button>
-          <Button className="primary-btn-red" style={{ marginRight: 10 }}>
+          {/* <Button className="primary-btn-red" style={{ marginRight: 10 }}>
             Leasing
-          </Button>
+          </Button> */}
         </div>
       </section>
     </Hidden>
