@@ -17,6 +17,7 @@ import { AdminTemplate } from "../../template";
 
 import {
   addProductUrl,
+  allshowrooms,
   allDealersCompanyName,
 } from "./../../assets/serverUrls";
 import axios from "axios";
@@ -30,9 +31,9 @@ import isAnyEmptyField from "../../assets/utils/checkAllObjectFields";
 
 const initialState = {
   name: "",
-  model: "",
-  location: "",
-  descriptions: "",
+  email: "",
+  address: "",
+  // descriptions: "",
 };
 
 class Addshowroom extends React.Component {
@@ -60,34 +61,39 @@ class Addshowroom extends React.Component {
   }
 
   handleSubmit(e) {
+    this.submitData(e)
+    this.setState({message:"Showroom added successfully"})
+    alert("Showroom added successfully");
     e.preventDefault();
+   
 
     //
 
-    if (!isAnyEmptyField(this.state, "message")) {
-      if (this.state.image.length > 0) this.submitData(e);
-      else {
-        this.setState({
-          message: "Image required",
-        });
-      }
-    } else {
-      this.setState({
-        message: "All fields are required",
-      });
-    }
+    // if (!isAnyEmptyField(this.state, "message")) {
+    //   if (this.state.image.length > 0) this.submitData(e);
+    //   else {
+    //     this.setState({
+    //       message: "Image required",
+    //     });
+    //   }
+    // } else {
+    //   this.setState({
+    //     message: "All fields are required",
+    //   });
+    // }
+  // }
   }
 
   submitData = (e) => {
     this.setState({
-      message: "Please wait product is adding",
+      message: "Please wait Showroom is adding",
     });
     let formData = new FormData();
 
     formData.append("name", this.state.name);
-    formData.append("model", this.state.model);
-    formData.append("location", this.state.location);
-    formData.append("descriptions", this.state.descriptions);
+    formData.append("email", this.state.email);
+    formData.append("address", this.state.address);
+    // formData.append("descriptions", this.state.descriptions);
 
     e.target.reset();
 
@@ -97,12 +103,12 @@ class Addshowroom extends React.Component {
     //
     //
     axios
-      .post(addProductUrl, formData, {})
+      .post(allshowrooms+`/new`, formData, {})
       .then((res) => {
         this.setState({
           ...initialState,
-          image: [],
-          message: "Product added successfully",
+          // image: [],
+          message: "Showroom added successfully",
         });
       })
       .catch((err) => {
@@ -124,38 +130,38 @@ class Addshowroom extends React.Component {
           <div className="container" style={{ margin: 20 }}>
             <form onSubmit={this.handleSubmit} encType="multipart/form-data">
               <FormControl fullWidth={true}>
-                <InputLabel htmlFor="car-name"> Name</InputLabel>
+                <InputLabel htmlFor="name"> Name</InputLabel>
 
                 <Input
                   name="name"
-                  id="car-name"
+                  id="name"
                   aria-describedby="my-helper-text"
                   onChange={this.handleChange}
                 />
               </FormControl>
               <br /> <br />
               <FormControl fullWidth={true}>
-                <InputLabel htmlFor="car-model">Email</InputLabel>
+                <InputLabel htmlFor="email">Email</InputLabel>
                 <Input
                   name="email"
-                  id="car-model"
+                  id="email"
                   aria-describedby="my-helper-text"
                   onChange={this.handleChange}
                 />
               </FormControl>
               <br /> <br />
               <FormControl fullWidth={true}>
-                <InputLabel htmlFor="car-location">Address</InputLabel>
+                <InputLabel htmlFor="address">Address</InputLabel>
                 <Input
                   name="address"
-                  id="car-location"
+                  id="address"
                   aria-describedby="my-helper-text"
                   onChange={this.handleChange}
                 />
 
                 <br />
               </FormControl>
-              <FormControl fullWidth>
+              {/* <FormControl fullWidth>
                 <InputLabel htmlFor="age-native-simple">
                   Call Tracking
                 </InputLabel>
@@ -170,7 +176,7 @@ class Addshowroom extends React.Component {
                   <option>Disabled</option>
                 </Select>
               </FormControl>
-              <br />
+              <br /> */}
               <br />
               <br />
               <br />
@@ -182,7 +188,7 @@ class Addshowroom extends React.Component {
                     variant={"contained"}
                     color={"primary"}
                   >
-                    Add Product
+                    Add Showroom
                   </Button>
                   <Typography>
                     {this.state.message ? this.state.message : ""}
