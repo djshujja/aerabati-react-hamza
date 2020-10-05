@@ -7,7 +7,6 @@
 //   const [chartData, setChartData] = useState({});
 //   const [employeeSalary, setEmployeeSalary] = useState([]);
 //   const [employeeAge, setEmployeeAge] = useState([]);
-
 //   const chart = () => {
 //     let empSal = [];
 //     let empAge = [];
@@ -36,7 +35,6 @@
 //       });
 //     console.log(empSal, empAge);
 //   };
-
 //   useEffect(() => {
 //     chart();
 //   }, []);
