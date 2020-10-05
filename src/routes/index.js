@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { HomePage } from "../pages/home-page";
-import { ShowRoom, Addshowroom } from "../pages/showroom";
+import { ShowRoom, Addshowroom,Editshowroom } from "../pages/showroom";
 import { Leads } from "../pages/leads";
 import { Users } from "../pages/users";
 import { ActiveCars } from "../pages/active-cars";
@@ -122,6 +122,8 @@ class Routes extends React.Component {
           <Route path="/registration" exact component={SignUp} />
           <Route path="/login" exact render={() => <Login />} />
           <Route path="/forgot-password" exact component={forgotPassword} />
+          <Route path="/editshowroom/:id" exact component={Editshowroom} />
+          
           <Route path="/" extact component={HomePage} />
         </Switch>
       </BrowserRouter>

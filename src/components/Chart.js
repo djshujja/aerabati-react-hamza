@@ -86,7 +86,7 @@ function Chart() {
         setchartData({
             labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul'],
             datasets: [{
-                label: 'abc',
+                label: 'Leads',
                 data: [32,45,22,11,28,22,2],
                 // backgroundColor: [red],
                 borderWidth:4
