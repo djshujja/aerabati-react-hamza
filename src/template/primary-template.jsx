@@ -110,7 +110,7 @@ class PrimryTemplate extends React.Component {
                       </ListItem>
                     </Link>
 
-                    <Link to={"/showrooms"} className={"link"}>
+                    <Link to={"/showroom"} className={"link"}>
                       <ListItem className="pr-drawer-item">
                         <ListItemText primary="Showrooms" />
                         <FaCaretRight color="#fff" />
@@ -122,7 +122,7 @@ class PrimryTemplate extends React.Component {
                         <FaCaretRight color="#fff" />
                       </ListItem>
                     </Link>
-                    <Link to={"/dealership-cars-info"} className={"link"}>
+                    <Link to={"/stats"} className={"link"}>
                       <ListItem className="pr-drawer-item">
                         <ListItemText primary="Stats" />
                         <FaCaretRight color="#fff" />

@@ -52,7 +52,7 @@ class DealershipInfoComponent extends React.Component{
                             <br/>
                             <Grid item alignItems={"center"} container sm={12} md={5}>
                                 <Grid item style={{marginRight:"5px",color:"#2980b9"}}>
-                                    <Typography variant={"h6"}>Owner Name</Typography>
+                                    <Typography variant={"h6"}>Company Name</Typography>
                                 </Grid>
                                 <Grid item>
 
