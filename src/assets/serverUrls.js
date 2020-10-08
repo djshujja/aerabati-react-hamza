@@ -46,3 +46,4 @@ export const editUsername = serverHostName + "/api/users/edit-user/";
 export const updateStatus =
   serverHostName + "/api/admin-panel/products/status/";
   export const showroomStatus = serverHostName + "/api/showrooms/edit-status/";
+  export const editDealer= serverHostName + "/api/dealership/edit-dealer/"

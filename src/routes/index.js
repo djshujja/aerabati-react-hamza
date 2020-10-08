@@ -30,6 +30,7 @@ import {
   DealerShip,
   DealerShipInfo,
   DealerShipStats,
+  EditInfo,
   Stats,
 } from "../pages/dealership/";
 
@@ -123,6 +124,7 @@ class Routes extends React.Component {
           <Route path="/login" exact render={() => <Login />} />
           <Route path="/forgot-password" exact component={forgotPassword} />
           <Route path="/editshowroom/:id" exact component={Editshowroom} />
+          <Route path="/edit-info/:id" exact component={EditInfo} />
           
           <Route path="/" extact component={HomePage} />
         </Switch>

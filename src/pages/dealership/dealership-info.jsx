@@ -22,7 +22,7 @@ class DealershipInfo extends React.Component{
 
 
 
-                    {/* <DealerShipHeader url={url} /> */}
+                     <DealerShipHeader url={url} /> 
 
 
                     {/* ========================= NESTED ROUTES ================== */}

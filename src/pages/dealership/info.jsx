@@ -7,6 +7,9 @@ import {
     Grid,
     Typography,
 } from "@material-ui/core";
+import IconButton from "@material-ui/core/IconButton";
+import { FaTrashAlt, FaPencilAlt, FaPause } from "react-icons/fa";
+import {Link} from "react-router-dom";
 
 
 
@@ -182,11 +185,17 @@ class DealershipInfoComponent extends React.Component{
                                         dealingInformation.contract_end_date?this.dateConversion(dealingInformation.contract_end_date) : ""
                                     }
                                 </Grid>
+                               
 
                             </Grid>
 
-
+ 
                         </Grid>
+                       <div>
+                       <Link to={`/edit-info/`+dealingInformation._id}>
+                           <button  style={{marginLeft:'250px',padding:'10px 40px'}}>Edit Info</button>
+                      </Link>
+                       </div>
                     </div>
 
         )

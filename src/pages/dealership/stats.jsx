@@ -53,7 +53,7 @@ class Stats extends React.Component {
 
             <PrimaryTemplate>
                  <AdminTemplate>
-                     <DealerShipHeader/>
+                     {/* <DealerShipHeader/> */}
                     <section className="stat-container" >
                         <Typography variant="h6" className="stat-heading">
                             Dealership statisticss

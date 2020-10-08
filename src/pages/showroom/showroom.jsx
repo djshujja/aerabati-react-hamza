@@ -24,6 +24,7 @@ import {
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import { PrimaryTemplate } from "../../template";
 import { AdminTemplate } from "../../template";
+import DeleteIcon from '@material-ui/icons/Delete';
 import { Button } from "@material-ui/core";
 
 import axios from "axios";
@@ -171,7 +172,7 @@ class ShowRoom extends React.Component {
                   <TableCell style={{ color: "#fff" }}>Email</TableCell>
                   <TableCell style={{ color: "#fff" }}>Address</TableCell>
                   <TableCell style={{ color: "#fff" }}>Status</TableCell>
-                  <TableCell style={{ color: "#fff" }}>Delete</TableCell>
+                  <TableCell style={{ color: "#fff" }}>Actions</TableCell>
                 </TableRow>
               </TableHead>
 
@@ -194,20 +195,7 @@ class ShowRoom extends React.Component {
                             <Typography>{singleValue.status}</Typography>
                           </div>*/}
                           <div className="product-action-btns-container">
-                            <Link to={`/editshowroom/` + singleValue._id}>
-                              <IconButton className="car-btns product-action-btn-margin">
-                                <FaPencilAlt />
-                              </IconButton>
-                            </Link>
-
-                            <IconButton
-                              className="car-btns product-action-btn-margin"
-                              onClick={() => {
-                                this.updateToPause(singleValue._id);
-                              }}
-                            >
-                              <FaPause />
-                            </IconButton>
+                          
 
                             {/* <IconButton
                               className="car-btns product-action-btn-margin"
@@ -248,14 +236,42 @@ class ShowRoom extends React.Component {
                       {singleValue.status}
                     </TableCell>
                     <TableCell style={{ border: "1px solid #ddd" }}>
-                      <IconButton
+                    <Button
+        variant="contained"
+        color="secondary"
+       style={{marginBottom:'10px',backgroundColor:'white',color:'black'}}
+        startIcon={<DeleteIcon />}
+        onClick={() => {
+
+          this.deleteProduct(singleValue._id);
+        }}
+      >
+        Delete
+      </Button>
+                      {/* <IconButton
                         onClick={() => {
 
                           this.deleteProduct(singleValue._id);
                         }}
                       >
                         <FaTrash />
-                      </IconButton>
+                      </IconButton> */}
+                      <br></br>
+                      <Link to={`/editshowroom/` + singleValue._id}>
+                            
+                               <IconButton className="car-btns product-action-btn-margin">
+                                <FaPencilAlt />
+                              </IconButton> 
+                            </Link>
+
+                            <IconButton
+                              className="car-btns product-action-btn-margin"
+                              onClick={() => {
+                                this.updateToPause(singleValue._id);
+                              }}
+                            >
+                              <FaPause />
+                            </IconButton>
                     </TableCell>
                   </TableRow>
                 ))}
