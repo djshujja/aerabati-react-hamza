@@ -61,11 +61,10 @@ class Addshowroom extends React.Component {
   }
 
   handleSubmit(e) {
-    this.submitData(e)
-    this.setState({message:"Showroom added successfully"})
+    this.submitData(e);
+    this.setState({ message: "Showroom added successfully" });
     alert("Showroom added successfully");
     e.preventDefault();
-   
 
     //
 
@@ -81,7 +80,7 @@ class Addshowroom extends React.Component {
     //     message: "All fields are required",
     //   });
     // }
-  // }
+    // }
   }
 
   submitData = (e) => {
@@ -103,7 +102,7 @@ class Addshowroom extends React.Component {
     //
     //
     axios
-      .post(allshowrooms+`/new`, formData, {})
+      .post(allshowrooms + `/new`, formData, {})
       .then((res) => {
         this.setState({
           ...initialState,
@@ -130,7 +129,7 @@ class Addshowroom extends React.Component {
           <div className="container" style={{ margin: 20 }}>
             <form onSubmit={this.handleSubmit} encType="multipart/form-data">
               <FormControl fullWidth={true}>
-                <InputLabel htmlFor="name"> Name</InputLabel>
+                <InputLabel htmlFor="name">Name</InputLabel>
 
                 <Input
                   name="name"
