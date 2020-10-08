@@ -24,7 +24,7 @@ import {
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import { PrimaryTemplate } from "../../template";
 import { AdminTemplate } from "../../template";
-import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteIcon from "@material-ui/icons/Delete";
 import { Button } from "@material-ui/core";
 
 import axios from "axios";
@@ -94,21 +94,21 @@ class ShowRoom extends React.Component {
 
   deleteProduct(id) {
     if (window.confirm("Are you sure?")) {
-    const data = this.state.data.filter(
-      (singleValue) => singleValue._id !== id
-    );
-    axios
-      .get(showroomdelete + id)
-      .then((res) => {
-        console.log(res);
-        this.setState({
-          data: data,
+      const data = this.state.data.filter(
+        (singleValue) => singleValue._id !== id
+      );
+      axios
+        .get(showroomdelete + id)
+        .then((res) => {
+          console.log(res);
+          this.setState({
+            data: data,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
         });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+    }
   }
   componentDidMount() {
     axios
@@ -121,13 +121,21 @@ class ShowRoom extends React.Component {
       .catch((err) => {});
   }
   render() {
+    let superArray = [];
     return (
       <PrimaryTemplate>
         <AdminTemplate>
           <Grid container className="search-filter" alignItems="center">
             <Grid item sm={6}>
               <Typography style={{ color: "#cc0000", fontWeight: 700 }}>
-                25 Active Cars
+                {this.state.data
+                  .filter((active) => active.status == "Active")
+                  .map((showrooms) => {
+                    superArray.push(showrooms);
+
+                    console.log(superArray);
+                  })}
+                {superArray.length} Active Showrooms
               </Typography>
               <Link to="/addshowroom" className={"link"}>
                 <Button
@@ -171,6 +179,7 @@ class ShowRoom extends React.Component {
                   <TableCell style={{ color: "#fff" }}>Name</TableCell>
                   <TableCell style={{ color: "#fff" }}>Email</TableCell>
                   <TableCell style={{ color: "#fff" }}>Address</TableCell>
+                  <TableCell style={{ color: "#fff" }}>Company</TableCell>
                   <TableCell style={{ color: "#fff" }}>Status</TableCell>
                   <TableCell style={{ color: "#fff" }}>Actions</TableCell>
                 </TableRow>
@@ -195,8 +204,6 @@ class ShowRoom extends React.Component {
                             <Typography>{singleValue.status}</Typography>
                           </div>*/}
                           <div className="product-action-btns-container">
-                          
-
                             {/* <IconButton
                               className="car-btns product-action-btn-margin"
                               onClick={() => {
@@ -229,6 +236,9 @@ class ShowRoom extends React.Component {
                     <TableCell style={{ border: "1px solid #ddd" }}>
                       {singleValue.address}
                     </TableCell>
+                    <TableCell style={{ border: "1px solid #ddd" }}>
+                      {singleValue.dealer.name}
+                    </TableCell>
                     <TableCell
                       style={{ border: "1px solid #ddd" }}
                       id={singleValue._id}
@@ -236,18 +246,21 @@ class ShowRoom extends React.Component {
                       {singleValue.status}
                     </TableCell>
                     <TableCell style={{ border: "1px solid #ddd" }}>
-                    <Button
-        variant="contained"
-        color="secondary"
-       style={{marginBottom:'10px',backgroundColor:'white',color:'black'}}
-        startIcon={<DeleteIcon />}
-        onClick={() => {
-
-          this.deleteProduct(singleValue._id);
-        }}
-      >
-        Delete
-      </Button>
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        style={{
+                          marginBottom: "10px",
+                          backgroundColor: "white",
+                          color: "black",
+                        }}
+                        startIcon={<DeleteIcon />}
+                        onClick={() => {
+                          this.deleteProduct(singleValue._id);
+                        }}
+                      >
+                        Delete
+                      </Button>
                       {/* <IconButton
                         onClick={() => {
 
@@ -258,20 +271,19 @@ class ShowRoom extends React.Component {
                       </IconButton> */}
                       <br></br>
                       <Link to={`/editshowroom/` + singleValue._id}>
-                            
-                               <IconButton className="car-btns product-action-btn-margin">
-                                <FaPencilAlt />
-                              </IconButton> 
-                            </Link>
+                        <IconButton className="car-btns product-action-btn-margin">
+                          <FaPencilAlt />
+                        </IconButton>
+                      </Link>
 
-                            <IconButton
-                              className="car-btns product-action-btn-margin"
-                              onClick={() => {
-                                this.updateToPause(singleValue._id);
-                              }}
-                            >
-                              <FaPause />
-                            </IconButton>
+                      <IconButton
+                        className="car-btns product-action-btn-margin"
+                        onClick={() => {
+                          this.updateToPause(singleValue._id);
+                        }}
+                      >
+                        <FaPause />
+                      </IconButton>
                     </TableCell>
                   </TableRow>
                 ))}

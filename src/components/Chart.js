@@ -2,7 +2,6 @@
 // import { Line } from "react-chartjs-2";
 // import axios from "axios";
 
-
 // const Chart = () => {
 //   const [chartData, setChartData] = useState({});
 //   const [employeeSalary, setEmployeeSalary] = useState([]);
@@ -10,13 +9,21 @@
 //   const chart = () => {
 //     let empSal = [];
 //     let empAge = [];
+//     let superArray = [];
 //     axios
 //       .get(`https://aerbeti-bck-test.herokuapp.com/api/bookings`)
-//       .then(res => {
+//       .then((res) => {
 //         console.log(res);
-//         for (const dataObj of res.data.data) {
-//           empSal.push(parseInt(dataObj.length));
-//           empAge.push(parseInt(dataObj.createdAt));
+//         res.data
+//           .filter((name) => name.includes("oct"))
+//           .map((showrooms) => {
+//             superArray.push(showrooms);
+
+//             console.log(superArray);
+//           });
+//         for (const dataObj of res.data) {
+//           empSal.push(superArray.length);
+//           empAge.push(dataObj.createdAt.substring(0, 10));
 //         }
 //         setChartData({
 //           labels: empAge,
@@ -25,12 +32,12 @@
 //               label: "level of thiccness",
 //               data: empSal,
 //               backgroundColor: ["rgba(75, 192, 192, 0.6)"],
-//               borderWidth: 4
-//             }
-//           ]
+//               borderWidth: 4,
+//             },
+//           ],
 //         });
 //       })
-//       .catch(err => {
+//       .catch((err) => {
 //         console.log(err);
 //       });
 //     console.log(empSal, empAge);
@@ -53,21 +60,21 @@
 //                   ticks: {
 //                     autoSkip: true,
 //                     maxTicksLimit: 10,
-//                     beginAtZero: true
+//                     beginAtZero: true,
 //                   },
 //                   gridLines: {
-//                     display: false
-//                   }
-//                 }
+//                     display: false,
+//                   },
+//                 },
 //               ],
 //               xAxes: [
 //                 {
 //                   gridLines: {
-//                     display: false
-//                   }
-//                 }
-//               ]
-//             }
+//                     display: false,
+//                   },
+//                 },
+//               ],
+//             },
 //           }}
 //         />
 //       </div>
@@ -76,31 +83,33 @@
 // };
 
 // export default Chart;
-// 
-import React, {useEffect, useState}from 'react';
-import {Line} from 'react-chartjs-2';
+//
+import React, { useEffect, useState } from "react";
+import { Line } from "react-chartjs-2";
 
 function Chart() {
-    const [chartData,setchartData]=useState({})
-    const chartjs=()=>{
-        setchartData({
-            labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul'],
-            datasets: [{
-                label: 'Leads',
-                data: [32,45,22,11,28,22,2],
-                // backgroundColor: [red],
-                borderWidth:4
-            }]
-        })
-    }
-    useEffect(()=>{
-        chartjs()
-    },[])
-    return (
-        <div>
-            <Line data={chartData}></Line>
-        </div>
-    )
+  const [chartData, setchartData] = useState({});
+  const chartjs = () => {
+    setchartData({
+      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+      datasets: [
+        {
+          label: "Leads",
+          data: [32, 45, 22, 11, 28, 22, 2],
+          // backgroundColor: [red],
+          borderWidth: 4,
+        },
+      ],
+    });
+  };
+  useEffect(() => {
+    chartjs();
+  }, []);
+  return (
+    <div>
+      <Line data={chartData}></Line>
+    </div>
+  );
 }
 
-export default Chart
+export default Chart;

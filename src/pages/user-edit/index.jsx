@@ -1,4 +1,4 @@
-export {default as UserEdit} from "./user-edit";
+export { default as UserEdit } from "./user-edit";
 
 // old code
 // import React from 'react';
@@ -12,7 +12,6 @@ export {default as UserEdit} from "./user-edit";
 // import axios from "axios";
 // import {withRouter} from "react-router-dom";
 
-
 // import "react-datepicker/dist/react-datepicker.css";
 // import {withStyles} from "@material-ui/styles";
 
@@ -20,13 +19,11 @@ export {default as UserEdit} from "./user-edit";
 // import {selectUserPermissions} from "../../redux/registration/registration.reselect";
 // import {createStructuredSelector} from "reselect";
 
-
 // const useStyles  = theme=>({
 //     itemSpace:{
 //         marginTop:"20px",
 //         paddingTop:"20px",
 //         backgroundColor:"red"
-
 
 //     },
 
@@ -45,7 +42,6 @@ export {default as UserEdit} from "./user-edit";
 //         super(props);
 //         this.state = {
 //             ...initialState,
-            
 
 //             showDealer:false,
 //             select_type:"",
@@ -62,8 +58,6 @@ export {default as UserEdit} from "./user-edit";
 //             // location:"",
 //             // descriptions:"",
 //             // image:"",
-
-
 
 //         }
 
@@ -91,8 +85,6 @@ export {default as UserEdit} from "./user-edit";
 //         })
 //     }
 
-
-
 //     handleSubmit(e){
 //         e.preventDefault();
 
@@ -100,13 +92,9 @@ export {default as UserEdit} from "./user-edit";
 
 //         const {match:{params:{id}}} = this.props;
 
-
-
-
 //             if (this.state.showDealer) {
 
 //                 console.log(this.state);
-
 
 //                 if (!isAnyEmptyField(this.state, "message")) {
 //                     axios.post(makeDealers, {
@@ -118,13 +106,10 @@ export {default as UserEdit} from "./user-edit";
 //                      //   console.log(data);
 //                         this.props.history.push("/users");
 
-
-
 //                         // this.setState({
 //                         //     message: "Done!"
 //                         // })
 //                     }).catch(err => {
-
 
 //                         this.setState({
 //                             message: err.response.data.error
@@ -144,7 +129,6 @@ export {default as UserEdit} from "./user-edit";
 //                 })
 //             } else {
 
-
 //                 axios.get(makeManager + id).then(res => {
 //                     this.props.history.push("/users");
 //                     // this.showMessage(res.data)
@@ -154,7 +138,6 @@ export {default as UserEdit} from "./user-edit";
 //                 })
 
 //             }
-
 
 //     }
 
@@ -166,20 +149,14 @@ export {default as UserEdit} from "./user-edit";
 //     render(){
 //           const {classes} = this.props;
 
-
-
-
-
 //         return (
 //             <PrimaryTemplate>
 //                 <AdminTemplate >
-
 
 //                     <Typography variant={"h5"} style={{marginLeft:20}}>
 //                         {/* <h2>Add Car Items</h2> */}
 //                        User Permissions
 //                     </Typography>
-
 
 //                    <Typography variant={"h6"} color={"secondary"}>
 //                        {
@@ -191,7 +168,6 @@ export {default as UserEdit} from "./user-edit";
 //                     <Grid container className="container" direction={"column"} style={{margin:20}}>
 //                         <Grid item container>
 //                         <Grid item xs={10} sm={10} md={5}  style={{padding:"1em 1em 0 0"}}>
-
 
 //                             <FormControl   fullWidth>
 //                                 <InputLabel id="demo-simple-select-label">Make A</InputLabel>
@@ -208,8 +184,6 @@ export {default as UserEdit} from "./user-edit";
 //                                         ? (     <MenuItem value={"admin"}>Admin</MenuItem>):""
 //                                     }
 
-
-
 //                                     <MenuItem value={"manager"}>Manager</MenuItem>
 //                                     <MenuItem value={"dealer"}>Dealer</MenuItem>
 //                                 </Select>
@@ -219,10 +193,7 @@ export {default as UserEdit} from "./user-edit";
 //                             {
 //                                 this.state.showDealer ? (
 
-
 //                             <Grid item container>
-
-
 
 //                         <Grid item xs={10} sm={6} md={5} style={{padding:"1em 1em 0 0"}}>
 //                             <TextField  name={"license_no"} onChange={this.handleChange}   fullWidth label={"License no"} name={"license_no"}/>
@@ -268,8 +239,6 @@ export {default as UserEdit} from "./user-edit";
 
 //                                 </Grid>
 
-
-
 //                         <Grid item xs={10} sm={10} md={5} style={{padding:"1em 1em 0 0"}} >
 //                             <TextField
 //                                 fullWidth
@@ -287,7 +256,6 @@ export {default as UserEdit} from "./user-edit";
 //                             />
 
 //                         </Grid>
-
 
 //                         <Grid item xs={10} sm={10} md={5} style={{padding:"1em 1em 0 0"}} >
 //                             <TextField
@@ -310,10 +278,6 @@ export {default as UserEdit} from "./user-edit";
 //                                 ):""
 //                                 }
 
-
-
-
-
 //                             {/*<TextField label={"Start Date"} name={"license_no"}/>*/}
 
 //                         </Grid>
@@ -324,14 +288,9 @@ export {default as UserEdit} from "./user-edit";
 //                            </Button>
 //                        </Grid>
 
-
-
-
 //                     </Grid>
 //                     </form>
 //                     <br/><br/><br/>
-
-
 
 //                 </AdminTemplate>
 //             </PrimaryTemplate>

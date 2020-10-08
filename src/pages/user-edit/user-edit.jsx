@@ -97,8 +97,6 @@ class UserEdit extends React.Component {
     formData.append("city", this.state.city);
     formData.append("contact_no", this.state.contact_no);
 
-    console.log(formData);
-
     axios
       .post(editUsername + this.id, formData, {})
       .then((res) => {
