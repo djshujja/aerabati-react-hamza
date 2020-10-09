@@ -611,6 +611,13 @@ body,
 }
 
 
+
+
+@media only screen and (min-width: 1800px) {
+    .container {
+     max-width: 1700px!important;
+    }
+  }
 /*
 Removed style 
 This section includes the style that were according to PSDs
