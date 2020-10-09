@@ -13,6 +13,7 @@ import {
   TableHead,
   TableRow,
   TableCell,
+  TextField,
 } from "@material-ui/core";
 
 // import { Typography, Grid } from '@material-ui/core';
@@ -21,9 +22,7 @@ import { MdFindInPage, MdMouse } from 'react-icons/md';
 import AdminTemplate from "../../template/admin-template";
 import {PrimaryTemplate} from "../../template";
 import {DealerShipHeader} from "../../components/dealership-header";
-
 import { AdminStatBadge } from '../../components/badges';
-
 import {dealerStats} from "../../assets/serverUrls";
 import Chart from '../../components/Chart.js'
 import axios from "axios";
@@ -55,6 +54,10 @@ class Stats extends React.Component {
                  <AdminTemplate>
                      {/* <DealerShipHeader/> */}
                     <section className="stat-container" >
+                    <TextField name={"doors"} fullWidth onChange={this.handleChange}  value={this.state.doors} label={"Search by Company Name"} placeholder={"e.g 2 doors "} />
+                      <br/><br/>
+                    <TextField name={"doors"} fullWidth onChange={this.handleChange}  value={this.state.doors} label={"Searh By date"} placeholder={"e.g 2 doors "} />
+                      <br/><br/>
                         <Typography variant="h6" className="stat-heading">
                             Dealership statisticss
                         </Typography>
