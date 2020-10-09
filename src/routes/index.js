@@ -31,6 +31,7 @@ import {
   DealerShipInfo,
   DealerShipStats,
   EditInfo,
+  DealersShowroom,
   Stats,
 } from "../pages/dealership/";
 
@@ -125,6 +126,7 @@ class Routes extends React.Component {
           <Route path="/forgot-password" exact component={forgotPassword} />
           <Route path="/editshowroom/:id" exact component={Editshowroom} />
           <Route path="/edit-info/:id" exact component={EditInfo} />
+          {/* <Route path="/dealership-showroom/:id" exact component={DealersShowroom} /> */}
           
           <Route path="/" extact component={HomePage} />
         </Switch>

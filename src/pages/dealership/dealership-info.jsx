@@ -4,7 +4,7 @@ import AdminTemplate from "../../template/admin-template";
 import { Route,Switch,withRouter} from "react-router-dom";
 
 import {PrimaryTemplate} from "../../template";
-import {DealerShipCars, DealerShipStats} from "./index";
+import {DealerShipCars, DealerShipStats,DealersShowroom} from "./index";
 import {DealerShipHeader} from "../../components/dealership-header";
 import DealershipInfoComponent from "./info";
 
@@ -30,6 +30,7 @@ class DealershipInfo extends React.Component{
                         <Route exact path={`${url}/`} render={()=>(<DealershipInfoComponent id={id}/>)} />
                         <Route exact path={`${url}/stats`} render={()=>(<DealerShipStats id={id}/>)} />
                         <Route exact path={`${url}/cars`} render={()=>(<DealerShipCars id={id}/>)} />
+                        <Route exact path={`${url}/showroom`} render={()=>(<DealersShowroom id={id}/>)} />
                     </Switch>
 
                     {/* ==========================================================*/}

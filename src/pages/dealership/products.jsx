@@ -92,7 +92,11 @@ class Products extends React.Component {
                                                  Description
                                              </Typography>
                                              <span>
-                                                 {car.descriptions}
+                                                 {car.doors}
+                                             </span>
+                                             <br></br>
+                                             <span>
+                                                 {car.color_available}
                                              </span>
                                          </div>
                                          <div className="product-price-container">
@@ -128,7 +132,7 @@ class Products extends React.Component {
 
 
                                          </div>
-                                         <div className="product-contact-btns-container">
+                                         {/* <div className="product-contact-btns-container">
                                              <Button
                                                  variant="outlined"
                                                  className="primary-btn-dark"
@@ -142,7 +146,7 @@ class Products extends React.Component {
                                                  startIcon={<FaEnvelope/>}>
                                                  Send Email
                                              </Button>
-                                         </div>
+                                         </div> */}
                                      </Grid>
                                  </Grid>
                              </section>
