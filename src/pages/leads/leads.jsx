@@ -216,7 +216,10 @@ class Leads extends React.Component {
                     <TableCell style={{ border: "1px solid #ddd" }}>
                       <div className="product-desc-container">
                         <Typography>
-                          {singleValue.createdAt.substring(0, 10)}
+                          <b>{singleValue.createdAt.substring(0, 15)}</b>
+                          <span> </span>
+                          {singleValue.createdAt.substring(16, 21)}
+                          {/* {singleValue.createdAt} */}
                         </Typography>
                       </div>
                     </TableCell>

@@ -158,7 +158,13 @@ class HomePage extends React.Component {
                     placeholder={"Search Location"}
                     value={this.state.search_location}
                     onChange={this.handleChange}
+                    list="locations"
                   />
+                  <datalist id="locations">
+                    {this.state.carsData.map((car) => (
+                      <option value={car.location}>{car.location}</option>
+                    ))}
+                  </datalist>
                 </Grid>
                 <Grid item xs={12} sm={3}>
                   <input
@@ -168,7 +174,13 @@ class HomePage extends React.Component {
                     placeholder={"Search Car Make"}
                     value={this.state.search_name}
                     onChange={this.handleChange}
+                    list="car-make"
                   />
+                  <datalist id="car-make">
+                    {this.state.carsData.map((car) => (
+                      <option value={car.name}>{car.name}</option>
+                    ))}
+                  </datalist>
                 </Grid>
                 <Grid item xs={12} sm={3}>
                   <FormControl style={{ width: "95%" }}>
@@ -179,7 +191,13 @@ class HomePage extends React.Component {
                       placeholder={"Search Model"}
                       value={this.state.search_model}
                       onChange={this.handleChange}
+                      list="car-model"
                     />
+                    <datalist id="car-model">
+                      {this.state.carsData.map((car) => (
+                        <option value={car.model}>{car.model}</option>
+                      ))}
+                    </datalist>
                   </FormControl>
                 </Grid>
 
